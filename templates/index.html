@@ -1,0 +1,176 @@
+<html>
+<head>
+  <meta name = "viewport" content = "width = device-width, initial-scale = 1.5, maximum-scale = 2.0, user-scalable=1", charset="UTF-8"/>
+  <link rel="stylesheet" href='/static/style.css' />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+<h1>Enviro+</h1>
+<table>
+  <tr>
+    <td valign = "top"><span id = "readings">---</span><br>
+        <label for="graph-sel">Graph:</label>
+        <select id="graph-sel">
+            <option value = "5min">5 minutes</option>
+            <option value = "day">day</option>
+            <option value = "week">week</option>
+            <option value = "month">month</option>
+            <option value = "year">year</option>
+        </select>
+    </td>
+    <td><canvas id="canvas" height="400" width="600"></canvas><br><br>
+        <table><tr id = "legend"></tr><tr id = "range"></tr></table>
+    </td>
+  </tr>
+</table>
+<script>
+setInterval(function() {
+  // Call a function repetitively with 1 second interval
+  getData();
+  getGraph();
+}, 900); //~1s update rate
+
+var frequencies = { 
+    '5min'  : { major : 300,            minor : 60,            poll : 1},
+    'day'   : { major : 3 * 3600,       minor : 3600,          poll : 60},
+    'week'  : { major : 24 * 3600,      minor : 6 * 3600,      poll : 600},
+    'month' : { major : 7 * 24 * 3600,  minor : 24 * 3600,     poll : 1440},
+    'year'  : { major : 31 * 24 * 3600, minor : 7 * 24 * 3600, poll : 17280}
+};
+
+function getData() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("readings").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "readings", true);
+  xhttp.send();
+}
+
+var last_frequency = "";
+var count = 0;
+function getGraph() {
+  var frequency = document.getElementById("graph-sel").value;
+  if(frequency != last_frequency || ++count % frequencies[frequency].poll == 0) {
+      last_frequency = frequency;
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          graph(JSON.parse(this.responseText));
+        }
+      };
+      xhttp.open("GET", "graph?time=" + frequency, true);
+      xhttp.send();
+    }
+}
+
+var items = [
+    {name: "temp",  colour: "#FF0000", min: 0,   max: 50},
+    {name: "humi",  colour: "#0000FF", min: 0,   max: 100},
+    {name: "pres",  colour: "#FF00FF", min: 950, max: 1050},
+    {name: "lux",   colour: "#FFFF00", min: 0,   max: 5000},
+    {name: "oxi",   colour: "#00FFFF", min: 0,   max: 100},
+    {name: "red",   colour: "darkorange", min: 0, max: 1000},
+    {name: "nh3",   colour: "lime",    min: 0,   max: 400},
+    {name: "pm03",  colour: "#000000", min: 0,   max: 20000},
+    {name: "pm05",  colour: "#181818", min: 0,   max: 10000},
+    {name: "pm10",  colour: "#303030", min: 0,   max: 2000},
+    {name: "pm25",  colour: "#505050", min: 0,   max: 500},
+    {name: "pm50",  colour: "#707070", min: 0,   max: 200},
+    {name: "pm100", colour: "#909090", min: 0,   max: 100},
+];
+
+var canvas;
+var ctx;
+var data;
+var yScaleSteps = 10;
+var yLabelHeight = 10;
+var xLabelHeight = 10;
+var xScale;
+var yScale;
+var yLabelWidth = 25;
+function graph(d) {
+	data = d;	
+	canvas = document.getElementById("canvas");
+	ctx = canvas.getContext("2d");
+	ctx.fillStyle = "#0099ff"
+	ctx.font = "20 pt Verdana"
+	
+	yScale = (canvas.height - yLabelHeight - xLabelHeight);
+	xScale = (canvas.width - yLabelWidth) / (data.length - 1);
+	
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Print X axis vertical time lines
+    var frequency = document.getElementById("graph-sel").value;
+    var major = frequencies[frequency].major;
+    var minor = frequencies[frequency].minor;
+    var show_date = major >= 24 * 3600;
+    var months = { 'Jan' : 0, 'Feb' : 1, 'Mar' : 2, 'Apr' : 3, 'May' : 4, 'Jun' : 5, 
+                   'Jul' : 6, 'Aug' : 7, 'Sep' : 8, 'Oct' : 9, 'Nov' : 10, 'Dec' :11 }
+    ctx.textAlign = 'center';
+    for(var i = 0; i < data.length; i++) {
+        var fields = data[i]['time'].match(/\S+/g); // split is broken!
+        var t = fields[3].split(':');
+        var date = months[fields[1]] * 31 + parseInt(fields[2]) - 1;
+        var time = date * 24 * 3600 + parseInt(t[0]) * 3600 + parseInt(t[1]) * 60 + parseInt(t[2]);
+        if(time % minor == 0) {
+            var is_major = (time % major) == 0;
+            var x = i * xScale + yLabelWidth;
+            if(is_major)
+                ctx.fillText(show_date ? fields[0] + ' ' + fields[1] + ' ' + fields[2] 
+                                       : fields[3].slice(0, 5), x, canvas.height);
+	        ctx.beginPath();
+	        ctx.strokeStyle = is_major ? "#808080" : "#B0B0B0"; // colour of grid lines
+            ctx.moveTo(x, 0);
+	        ctx.lineTo(x, canvas.height - xLabelHeight);
+            ctx.stroke();        
+        }    
+    }
+        
+	// Print Y axis labels and draw horizontal grid lines
+	ctx.beginPath();
+	ctx.strokeStyle="#B0B0B0"; // colour of grid lines
+    ctx.textAlign = 'left';
+	for(var i = 0; i <= yScaleSteps; i++) {
+		var y = yScale * (yScaleSteps - i) / yScaleSteps + yLabelHeight - 1; 
+		ctx.fillText(i / yScaleSteps, yLabelHeight, y);
+		ctx.moveTo(yLabelWidth, y)
+		ctx.lineTo(canvas.width, y)
+		count++;
+	}
+	ctx.stroke();
+	
+	// Plot each item
+    var keys = "";
+    var ranges = "";
+    for(var item of items) {
+        ctx.strokeStyle= item.colour;
+        plotData(item.name, item.min, item.max);
+        keys += '<td style="color:' + item.colour + '"> ' + item.name + ' </td>'; 
+        ranges += '<td>/' + (item.max - item.min) + '</td>';
+    }
+    // Update the legend
+    document.getElementById("legend").innerHTML = keys;
+    document.getElementById("range").innerHTML = ranges;
+}
+
+function scaley(y, min, max) {
+    return (y - min) * yScale / (max - min);
+}
+
+function plotData(dataSet, min, max) {
+	ctx.beginPath();
+    y0 = canvas.height - xLabelHeight;
+	ctx.moveTo(yLabelWidth, y0 - scaley(data[0][dataSet], min, max));
+	for (var i = 1; i < data.length; i++)
+		ctx.lineTo(yLabelWidth + i * xScale, y0 - scaley(data[i][dataSet], min, max));
+
+	ctx.stroke();
+}
+
+</script>
+
+</body>
+</html>
