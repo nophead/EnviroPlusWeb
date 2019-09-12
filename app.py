@@ -151,10 +151,11 @@ def readings():
 
 def compress_data(ndays, nsamples):
     cdata = []
-    for day in days[-ndays:]:
+    for day in days[-(ndays + 1):]:
         for i in range(0, len(day), nsamples):
             cdata.append(sum_data(day[i : i + nsamples]))
-    return json.dumps(cdata)
+    length = ndays * samples_per_day // nsamples
+    return json.dumps(cdata[-length:])
 
 # 300 @ 1s = 5m
 # 288 @ 5m = 24h
