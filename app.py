@@ -50,8 +50,13 @@ def read_data(time):
         try:
             particles = pms5003.read()
             break
-        except:
-            print("Particle read failed")
+        except RuntimeError as e:
+            print("Particle read failed:", e.__class__.__name__)
+            if not run_flag:
+                raise e
+            pms5003.reset()
+            sleep(30)
+            
     pm100 = particles.pm_per_1l_air(10.0);
     pm50 = particles.pm_per_1l_air(5.0) - pm100;
     pm25 = particles.pm_per_1l_air(2.5) - pm100 - pm50;
@@ -193,8 +198,9 @@ if __name__ == '__main__':
         days.insert(0,[])
     background_thread.start()
     try:
-        app.run(debug = True, host = '0.0.0.0', port = 5000, use_reloader = False)
-    except:
+        app.run(debug = True, host = '0.0.0.0', port = 80, use_reloader = False)
+    except Exception as e:
+        print(e)
         pass
     run_flag = False
     print("Waiting for background to quit")
