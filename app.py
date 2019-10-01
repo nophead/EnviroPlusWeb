@@ -18,7 +18,12 @@
 #
 from flask import Flask, render_template, url_for, request
 from bme280 import BME280
-import ltr559
+try:
+    # Transitional fix for breaking change in LTR559
+    from ltr559 import LTR559
+    ltr559 = LTR559()
+except ImportError:
+    import ltr559
 from enviroplus import gas
 from pms5003 import PMS5003, ReadTimeoutError as pmsReadTimeoutError
 import threading
