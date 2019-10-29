@@ -31,6 +31,7 @@ from time import sleep, time, asctime, localtime, strftime, gmtime
 from math import ceil, floor
 import json
 import os
+import RPi.GPIO as IO
 
 try:
     from smbus2 import SMBus
@@ -41,6 +42,11 @@ bus = SMBus(1)
 bme280 = BME280(i2c_dev=bus) # BME280 temperature, humidity and pressure sensor
 
 pms5003 = PMS5003() # PMS5003 particulate sensor
+
+IO.setmode(IO.BCM)   # Set pin numbering
+IO.setup(4,IO.OUT)   # Fan controller on GPIO 4
+pwm = IO.PWM(4,1000) # PWM frequency
+pwm.start(100)       # Duty cycle
 
 app = Flask(__name__)
 run_flag = True
