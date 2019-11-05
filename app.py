@@ -163,7 +163,9 @@ def index():
 
 @app.route('/readings')
 def readings():
-    return render_template('readings.html', **record)
+	arg = request.args["fan"]
+	pwm.ChangeDutyCycle(int(arg))
+	return render_template('readings.html', **record)
 
 def compress_data(ndays, nsamples):
     cdata = []

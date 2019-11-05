@@ -9,14 +9,21 @@
 <table>
   <tr>
     <td valign = "top"><span id = "readings">---</span><br>
-        <label for="graph-sel">Graph:</label>
-        <select id="graph-sel">
-            <option value = "5min">5 minutes</option>
-            <option value = "day">day</option>
-            <option value = "week">week</option>
-            <option value = "month">month</option>
-            <option value = "year">year</option>
-        </select>
+		<table>
+		   <tr><td><label for="graph-sel">Graph:</label></td>
+		       <td><select id="graph-sel">
+						<option value = "5min">5 minutes</option>
+						<option value = "day">day</option>
+						<option value = "week">week</option>
+						<option value = "month">month</option>
+						<option value = "year">year</option>
+					</select>
+				</td>
+			</tr>
+			<tr><td><label for="fan">Fan:</label></td>
+                <td><input id="fan" type="number" min="0" max="100" step="5" value="100" size="3" name="fan"></td>
+			</tr>
+		</table>
     </td>
     <td><canvas id="canvas" height="400" width="600"></canvas><br><br>
         <table><tr id = "legend"></tr><tr id = "range"></tr></table>
@@ -40,12 +47,13 @@ var frequencies = {
 
 function getData() {
   var xhttp = new XMLHttpRequest();
+  var fan = document.getElementById("fan").value;
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("readings").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "readings", true);
+  xhttp.open("GET", "readings?fan=" + fan, true);
   xhttp.send();
 }
 
@@ -71,9 +79,9 @@ var items = [
     {name: "humi",  colour: "#0000FF", min: 0,   max: 100},
     {name: "pres",  colour: "green", min: 950, max: 1050},
     {name: "lux",   colour: "#FFFF00", min: 0,   max: 5000},
-    {name: "oxi",   colour: "#00FFFF", min: 0,   max: 200},
+    {name: "oxi",   colour: "#00FFFF", min: 0,   max: 400},
     {name: "red",   colour: "darkorange", min: 0, max: 1000},
-    {name: "nh3",   colour: "#FF00FF",    min: 0, max: 400},
+    {name: "nh3",   colour: "#FF00FF",    min: 0, max: 500},
     {name: "pm03",  colour: "#000000", min: 0,   max: 20000},
     {name: "pm05",  colour: "#181818", min: 0,   max: 10000},
     {name: "pm10",  colour: "#303030", min: 0,   max: 2000},
