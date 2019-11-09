@@ -32,6 +32,10 @@ from math import ceil, floor
 import json
 import os
 import RPi.GPIO as IO
+import ST7735
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
 
 try:
     from smbus2 import SMBus
@@ -48,6 +52,63 @@ IO.setup(4,IO.OUT)   # Fan controller on GPIO 4
 pwm = IO.PWM(4,1000) # PWM frequency
 pwm.start(100)       # Duty cycle
 
+# Create ST7735 LCD display class
+st7735 = ST7735.ST7735(
+    port=0,
+    cs=1,
+    dc=9,
+    backlight=12,
+    rotation=270,
+    spi_speed_hz=10000000
+)
+
+# Initialize display
+st7735.begin()
+
+WIDTH = st7735.width
+HEIGHT = st7735.height
+
+# Set up canvas and font
+img = Image.new('RGB', (WIDTH, HEIGHT), color=(0, 0, 0))
+draw = ImageDraw.Draw(img)
+path = os.path.dirname(os.path.realpath(__file__)) + "/../enviroplus-python/examples/fonts"
+#font = ImageFont.truetype(path + "/Asap/Asap-Bold.ttf", 20)
+smallfont = ImageFont.truetype(path + "/Asap/Asap-Bold.ttf", 10)
+x_offset = 2
+y_offset = 2
+
+units = ["°C",
+         "%",
+         "mBar",
+         "Lux",
+         "kΩ",
+         "kΩ",
+         "kΩ",
+         "/100cl",
+         "/100cl",
+         "/100cl"]
+
+# Displays all the text on the 0.96" LCD
+def display_everything():
+    draw.rectangle((0, 0, WIDTH, HEIGHT), (0, 0, 0))
+    column_count = 2
+    variables = list(record.keys())
+    row_count = len(units) // column_count
+    last_values = days[-1][-1]
+    for i in range(len(units)):
+        variable = variables[i + 1]
+        data_value = record[variable]
+        last_value = last_values[variable]
+        unit = units[i]
+        x = x_offset + ((WIDTH // column_count) * (i // row_count))
+        y = y_offset + ((HEIGHT // row_count) * (i % row_count))
+        message = "{}: {:s} {}".format(variable[:4], str(data_value), unit)
+        tol = 1.01
+        rgb = (255, 0, 255) if data_value > last_value * tol  else (0, 255, 255) if data_value < last_value / tol else (0, 255, 0)
+        draw.text((x, y), message, font = smallfont, fill = rgb)
+    st7735.display(img)
+
+    
 app = Flask(__name__)
 run_flag = True
 
@@ -142,6 +203,7 @@ def background():
     while run_flag:
         t = int(floor(time()))
         record = read_data(t)
+        display_everything()
         data = data[-(samples - 1):] + [record]         # Keep five minutes
         if t % samples == samples - 1 and len(data) == samples: # At the end of a 5 minute period?
             totals = sum_data(data)
@@ -163,9 +225,9 @@ def index():
 
 @app.route('/readings')
 def readings():
-	arg = request.args["fan"]
-	pwm.ChangeDutyCycle(int(arg))
-	return render_template('readings.html', **record)
+    arg = request.args["fan"]
+    pwm.ChangeDutyCycle(int(arg))
+    return render_template('readings.html', **record)
 
 def compress_data(ndays, nsamples):
     cdata = []
