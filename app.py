@@ -17,6 +17,7 @@
 # If not, see <https:#www.gnu.org/licenses/>.
 #
 from flask import Flask, render_template, url_for, request
+import logging
 from bme280 import BME280
 try:
     # Transitional fix for breaking change in LTR559
@@ -110,6 +111,8 @@ def display_everything():
 
     
 app = Flask(__name__)
+log = logging.getLogger("werkzeug")
+log.disabled = True
 run_flag = True
 
 def read_data(time):
@@ -273,7 +276,7 @@ if __name__ == '__main__':
         days.insert(0,[])
     background_thread.start()
     try:
-        app.run(debug = True, host = '0.0.0.0', port = 80, use_reloader = False)
+        app.run(debug = False, host = '0.0.0.0', port = 80, use_reloader = False)
     except Exception as e:
         print(e)
         pass
