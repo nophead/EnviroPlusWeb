@@ -111,6 +111,7 @@ def display_everything():
 
     
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 log = logging.getLogger("werkzeug")
 log.disabled = True
 run_flag = True
@@ -206,7 +207,6 @@ def background():
     while run_flag:
         t = int(floor(time()))
         record = read_data(t)
-        display_everything()
         data = data[-(samples - 1):] + [record]         # Keep five minutes
         if t % samples == samples - 1 and len(data) == samples: # At the end of a 5 minute period?
             totals = sum_data(data)
@@ -218,6 +218,8 @@ def background():
                 days.append([])
             last_file = fname
             add_record(days[-1], totals)        # Add to today, filling any gap from last reading if been stopped
+        if days:
+            display_everything()
         sleep(max(t + 1 - time(), 0.1))
     
 background_thread = threading.Thread(target = background)
