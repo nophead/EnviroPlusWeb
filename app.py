@@ -214,7 +214,7 @@ def background():
             with open(fname, "a+") as f:
                 f.write(json.dumps(totals) + '\n')
             # Handle new day
-            if last_file and last_file != fname:
+            if not days or (last_file and last_file != fname):
                 days.append([])
             last_file = fname
             add_record(days[-1], totals)        # Add to today, filling any gap from last reading if been stopped
@@ -251,7 +251,10 @@ def compress_data(ndays, nsamples):
 def graph():
     arg = request.args["time"]
     if arg == 'day':
-        return json.dumps((days[-2] + days[-1])[-samples_per_day:])
+        last2 = []
+        for day in days[-2:]:
+            last2 += day
+        return json.dumps(last2[-samples_per_day:])
     if arg == 'week':
         return compress_data(7, 30 * 60 // samples)
     if arg == 'month':
@@ -274,8 +277,6 @@ if __name__ == '__main__':
     files =  sorted(os.listdir('data'))
     for f in files:
         days.append(read_day('data/' + f))
-    while len(days) < 2:
-        days.insert(0,[])
     background_thread.start()
     try:
         app.run(debug = False, host = '0.0.0.0', port = 80, use_reloader = False)
