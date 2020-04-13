@@ -1,3 +1,4 @@
+# -- coding: utf-8 --
 #
 # EnviroPlusWeb Copyright Chris Palmer 2019
 # nop.head@gmail.com
