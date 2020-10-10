@@ -18,7 +18,7 @@
 # If not, see <https:#www.gnu.org/licenses/>.
 #
 
-# Do you have a particule sensor? Yes=1, No=0
+# Do you have a particle sensor? Yes=1, No=0
 Part_sensor = 0
 #
 
