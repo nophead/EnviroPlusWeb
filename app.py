@@ -17,6 +17,11 @@
 # You should have received a copy of the GNU General Public License along with EnviroPlusWeb.
 # If not, see <https:#www.gnu.org/licenses/>.
 #
+
+# Do you have a particule sensor? Yes=1, No=0
+Part_sensor = 0
+#
+
 from fonts.ttf import RobotoMedium as UserFont
 from flask import Flask, render_template, url_for, request
 import logging
@@ -78,23 +83,36 @@ smallfont = ImageFont.truetype(UserFont, 10)
 x_offset = 2
 y_offset = 2
 
-units = ["°C",
-         "%",
-         "mBar",
-         "Lux",
-         "kΩ",
-         "kΩ",
-         "kΩ",
-         "/100cl",
-         "/100cl",
-         "/100cl"]
+
+if Part_sensor == 1:
+	units = ["°C",
+        	 "%",
+        	 "mBar",
+	         "Lux",
+	         "kΩ",
+	         "kΩ",
+	         "kΩ",
+	         "/100cl",
+	         "/100cl",
+	         "/100cl"
+		 ]
+else:
+	units = ["°C",
+                 "%",
+                 "Lux",
+                 "mBar",
+                 "kΩ",
+                 "kΩ",
+                 "kΩ"
+                 ]
+
 
 # Displays all the text on the 0.96" LCD
 def display_everything():
     draw.rectangle((0, 0, WIDTH, HEIGHT), (0, 0, 0))
     column_count = 2
     variables = list(record.keys())
-    row_count = len(units) // column_count
+    row_count = (len(units) // column_count) + (len(units) % column_count > 0)
     last_values = days[-1][-1]
     for i in range(len(units)):
         variable = variables[i + 1]
@@ -122,40 +140,55 @@ def read_data(time):
     humidity = bme280.get_humidity()
     lux = ltr559.get_lux()
     gases = gas.read_all()
-    while True:
-        try:
-            particles = pms5003.read()
-            break
-        except RuntimeError as e:
-            print("Particle read failed:", e.__class__.__name__)
-            if not run_flag:
-                raise e
-            pms5003.reset()
-            sleep(30)
+    if Part_sensor == 1:
+	    while True:
+	        try:
+	            particles = pms5003.read()
+	            break
+	        except RuntimeError as e:
+	            print("Particle read failed:", e.__class__.__name__)
+	            if not run_flag:
+	                raise e
+	            pms5003.reset()
+	            sleep(30)
 
-    pm100 = particles.pm_per_1l_air(10.0);
-    pm50 = particles.pm_per_1l_air(5.0) - pm100;
-    pm25 = particles.pm_per_1l_air(2.5) - pm100 - pm50;
-    pm10 = particles.pm_per_1l_air(1.0) - pm100 - pm50 - pm25;
-    pm5 = particles.pm_per_1l_air(0.5) - pm100 - pm50 - pm25 - pm10;
-    pm3 = particles.pm_per_1l_air(0.3) - pm100 - pm50 - pm25 - pm10 - pm5;
-    record = {
-        'time' : asctime(localtime(time)),
-        'temp' : round(temperature,1),
-        'humi' : round(humidity, 1),
-        'pres' : round(pressure,1),
-        'lux'  : round(lux),
-        'oxi'  : round(gases.oxidising / 1000, 1),
-        'red'  : round(gases.reducing / 1000),
-        'nh3'  : round(gases.nh3 / 1000),
-        'pm03' : pm3,
-        'pm05' : pm5,
-        'pm10' : pm10,
-        'pm25' : pm25,
-        'pm50' : pm50,
-        'pm100': pm100,
-    }
-    return record
+    if Part_sensor == 1:
+	    pm100 = particles.pm_per_1l_air(10.0);
+	    pm50 = particles.pm_per_1l_air(5.0) - pm100;
+	    pm25 = particles.pm_per_1l_air(2.5) - pm100 - pm50;
+	    pm10 = particles.pm_per_1l_air(1.0) - pm100 - pm50 - pm25;
+	    pm5 = particles.pm_per_1l_air(0.5) - pm100 - pm50 - pm25 - pm10;
+	    pm3 = particles.pm_per_1l_air(0.3) - pm100 - pm50 - pm25 - pm10 - pm5;
+	    record = {
+  	      'time' : asctime(localtime(time)),
+	        'temp' : round(temperature,1),
+	        'humi' : round(humidity, 1),
+	        'pres' : round(pressure,1),
+	        'lux'  : round(lux),
+	        'oxi'  : round(gases.oxidising / 1000, 1),
+	        'red'  : round(gases.reducing / 1000),
+	        'nh3'  : round(gases.nh3 / 1000),
+	        'pm03' : pm3,
+	        'pm05' : pm5,
+	        'pm10' : pm10,
+	        'pm25' : pm25,
+	        'pm50' : pm50,
+	        'pm100': pm100,
+	    }
+	    return record
+    else:
+            record = {
+                'time' : asctime(localtime(time)),
+                'temp' : round(temperature,1),
+                'humi' : round(humidity, 1),
+                'lux'  : round(lux),
+                'pres' : round(pressure,1),
+                'oxi'  : round(gases.oxidising / 1000, 1),
+                'red'  : round(gases.reducing / 1000),
+                'nh3'  : round(gases.nh3 / 1000),
+            }
+            return record
+
 
 record = read_data(time()) # throw away the first readings as not accurate
 data = []
