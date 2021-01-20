@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License along with EnviroPlusWeb.
 # If not, see <https:#www.gnu.org/licenses/>.
 #
+particle_sensor = True
 from flask import Flask, render_template, url_for, request
 import logging
 from bme280 import BME280
@@ -122,23 +123,27 @@ def read_data(time):
     humidity = bme280.get_humidity()
     lux = ltr559.get_lux()
     gases = gas.read_all()
-    while True:
-        try:
-            particles = pms5003.read()
-            break
-        except RuntimeError as e:
-            print("Particle read failed:", e.__class__.__name__)
-            if not run_flag:
-                raise e
-            pms5003.reset()
-            sleep(30)
-            
-    pm100 = particles.pm_per_1l_air(10.0);
-    pm50 = particles.pm_per_1l_air(5.0) - pm100;
-    pm25 = particles.pm_per_1l_air(2.5) - pm100 - pm50;
-    pm10 = particles.pm_per_1l_air(1.0) - pm100 - pm50 - pm25;
-    pm5 = particles.pm_per_1l_air(0.5) - pm100 - pm50 - pm25 - pm10;
-    pm3 = particles.pm_per_1l_air(0.3) - pm100 - pm50 - pm25 - pm10 - pm5;
+    if particle_sensor:
+        while True:
+            try:
+                particles = pms5003.read()
+                break
+            except RuntimeError as e:
+                print("Particle read failed:", e.__class__.__name__)
+                if not run_flag:
+                    raise e
+                pms5003.reset()
+                sleep(30)
+                
+        pm100 = particles.pm_per_1l_air(10.0)
+        pm50  = particles.pm_per_1l_air(5.0) - pm100
+        pm25  = particles.pm_per_1l_air(2.5) - pm100 - pm50
+        pm10  = particles.pm_per_1l_air(1.0) - pm100 - pm50 - pm25
+        pm5   = particles.pm_per_1l_air(0.5) - pm100 - pm50 - pm25 - pm10
+        pm3   = particles.pm_per_1l_air(0.3) - pm100 - pm50 - pm25 - pm10 - pm5
+    else:
+        pm100 = pm50 = pm25 = pm10 = pm5 = pm3 = 0
+        
     record = {
         'time' : asctime(localtime(time)),
         'temp' : round(temperature,1),
@@ -265,6 +270,7 @@ def graph():
    
 def read_day(fname):
     day = []
+    print("reading " + fname)
     with open(fname, 'r') as f:
         for line in f.readlines():
             record = json.loads(line)
