@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # EnviroPlusWeb Copyright Chris Palmer 2019
 # nop.head@gmail.com
@@ -17,6 +18,7 @@
 # If not, see <https:#www.gnu.org/licenses/>.
 #
 particle_sensor = True
+from fonts.ttf import RobotoMedium as UserFont
 from flask import Flask, render_template, url_for, request
 import logging
 from bme280 import BME280
@@ -73,9 +75,7 @@ HEIGHT = st7735.height
 # Set up canvas and font
 img = Image.new('RGB', (WIDTH, HEIGHT), color=(0, 0, 0))
 draw = ImageDraw.Draw(img)
-path = os.path.dirname(os.path.realpath(__file__)) + "/../enviroplus-python/examples/fonts"
-#font = ImageFont.truetype(path + "/Asap/Asap-Bold.ttf", 20)
-smallfont = ImageFont.truetype(path + "/Asap/Asap-Bold.ttf", 10)
+smallfont = ImageFont.truetype(UserFont, 10)
 x_offset = 2
 y_offset = 2
 
@@ -110,7 +110,7 @@ def display_everything():
         draw.text((x, y), message, font = smallfont, fill = rgb)
     st7735.display(img)
 
-    
+
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 log = logging.getLogger("werkzeug")
@@ -168,7 +168,7 @@ days = []
 
 def filename(t):
     return strftime("data/%Y_%j", localtime(t))
-    
+
 def sum_data(data):
     totals = {"time" : data[0]["time"]}
     keys = list(data[0].keys())
@@ -186,7 +186,7 @@ def sum_data(data):
 def record_time(r):
     t = r['time'].split()[3].split(':')
     return int(t[0]) * 60 + int(t[1])
-    
+
 samples = 300 # Number of 1 second samples average per file record
 samples_per_day = 24 * 3600 // samples
 
@@ -204,7 +204,7 @@ def add_record(day, record):
             filler["time"] = old_time[:colon_pos - 2] + ("%02d:%02d" % (t / 60, t % 60)) + old_time[colon_pos + 3:]
             day.append(filler)
     day.append(record)
-    
+
 def background():
     global record, data
     sleep(2)
@@ -226,12 +226,12 @@ def background():
         if days:
             display_everything()
         sleep(max(t + 1 - time(), 0.1))
-    
+
 background_thread = threading.Thread(target = background)
 
 @app.route('/')
 def index():
-    return render_template('index.html') 
+    return render_template('index.html')
 
 @app.route('/readings')
 def readings():
@@ -267,7 +267,7 @@ def graph():
     if arg == 'year':
         return compress_data(365, samples_per_day)
     return json.dumps(data)
-   
+
 def read_day(fname):
     day = []
     print("reading " + fname)
@@ -276,7 +276,7 @@ def read_day(fname):
             record = json.loads(line)
             add_record(day, record)
     return day
-        
+
 if __name__ == '__main__':
     if not os.path.isdir('data'):
         os.makedirs('data')
