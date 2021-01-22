@@ -18,7 +18,6 @@
 # If not, see <https:#www.gnu.org/licenses/>.
 #
 particle_sensor = True
-from fonts.ttf import RobotoMedium as UserFont
 from flask import Flask, render_template, url_for, request
 import logging
 from bme280 import BME280
@@ -75,7 +74,9 @@ HEIGHT = st7735.height
 # Set up canvas and font
 img = Image.new('RGB', (WIDTH, HEIGHT), color=(0, 0, 0))
 draw = ImageDraw.Draw(img)
-smallfont = ImageFont.truetype(UserFont, 10)
+
+path = os.path.dirname(os.path.realpath(__file__)) + "/fonts"
+smallfont = ImageFont.truetype(path + "/Asap/Asap-Bold.ttf", 10)
 x_offset = 2
 y_offset = 2
 
@@ -85,25 +86,28 @@ units = ["°C",
          "Lux",
          "kΩ",
          "kΩ",
-         "kΩ",
-         "/100cl",
-         "/100cl",
-         "/100cl"]
+         "kΩ"]
+         
+if particle_sensor:
+    units += [
+         "/0.ll",
+         "/0.1l",
+         "/0.1l"]
 
 # Displays all the text on the 0.96" LCD
 def display_everything():
     draw.rectangle((0, 0, WIDTH, HEIGHT), (0, 0, 0))
     column_count = 2
     variables = list(record.keys())
-    row_count = len(units) // column_count
+    row_count = ceil(len(units) / column_count)
     last_values = days[-1][-1]
     for i in range(len(units)):
         variable = variables[i + 1]
         data_value = record[variable]
         last_value = last_values[variable]
         unit = units[i]
-        x = x_offset + ((WIDTH // column_count) * (i // row_count))
-        y = y_offset + ((HEIGHT // row_count) * (i % row_count))
+        x = x_offset + (WIDTH // column_count) * (i // row_count)
+        y = y_offset + (HEIGHT // row_count) * (i % row_count)
         message = "{}: {:s} {}".format(variable[:4], str(data_value), unit)
         tol = 1.01
         rgb = (255, 0, 255) if data_value > last_value * tol  else (0, 255, 255) if data_value < last_value / tol else (0, 255, 0)
@@ -237,7 +241,7 @@ def index():
 def readings():
     arg = request.args["fan"]
     pwm.ChangeDutyCycle(int(arg))
-    return render_template('readings.html', **record)
+    return render_template('readings.html' if particle_sensor else 'readings_np.html', **record) 
 
 def compress_data(ndays, nsamples):
     cdata = []
