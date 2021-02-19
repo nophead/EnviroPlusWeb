@@ -46,6 +46,7 @@ var frequencies = {
 };
 
 var particle_sensor = false;
+var gas_sensor = false;
 
 function getData() {
   var xhttp = new XMLHttpRequest();
@@ -54,6 +55,7 @@ function getData() {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("readings").innerHTML = this.responseText;
       particle_sensor = this.responseText.search("10.0um") > 0;
+      gas_sensor = this.responseText.search("Oxidising") > 0;
     }
   };
   xhttp.open("GET", "readings?fan=" + fan, true);
@@ -77,11 +79,14 @@ function getGraph() {
     }
 }
 
-var items_np = [
+var items_ngp = [
     {name: "temp",  colour: "#FF0000", min: 0,   max: 50},
     {name: "humi",  colour: "#0000FF", min: 0,   max: 100},
     {name: "pres",  colour: "green", min: 950,   max: 1050},
     {name: "lux",   colour: "#FFFF00", min: 0,   max: 25000},
+]
+
+var items_g = [
     {name: "oxi",   colour: "#00FFFF", min: 0,   max: 400},
     {name: "red",   colour: "darkorange", min: 0, max: 1000},
     {name: "nh3",   colour: "#FF00FF",    min: 0, max: 600},
@@ -159,7 +164,8 @@ function graph(d) {
 	// Plot each item
     var keys = "";
     var ranges = "";
-    var items = particle_sensor ? items_np.concat(items_p) : items_np;
+    var items = particle_sensor ? items_ngp.concat(items_g).concat(items_p) : 
+                gas_sensor ? items_ngp.concat(items_g) : items_ngp;
     for(var item of items) {
         ctx.strokeStyle= item.colour;
         plotData(item.name, item.min, item.max);

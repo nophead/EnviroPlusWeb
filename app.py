@@ -18,6 +18,8 @@
 # If not, see <https:#www.gnu.org/licenses/>.
 #
 particle_sensor = True
+gas_sensor = True
+assert gas_sensor or not particle_sensor # cant have particle sensor without gas sensor
 from flask import Flask, render_template, url_for, request
 import logging
 from bme280 import BME280
@@ -83,7 +85,10 @@ y_offset = 2
 units = ["°C",
          "%",
          "mBar",
-         "Lux",
+         "Lux"]
+         
+if gas_sensor:
+    units += [
          "kΩ",
          "kΩ",
          "kΩ"]
@@ -126,7 +131,15 @@ def read_data(time):
     pressure = bme280.get_pressure()
     humidity = bme280.get_humidity()
     lux = ltr559.get_lux()
-    gases = gas.read_all()
+    
+    if gas_sensor:
+        gases = gas.read_all()
+        oxi = round(gases.oxidising / 1000, 1)
+        red = round(gases.reducing / 1000)
+        nh3 = round(gases.nh3 / 1000)
+    else:
+        oxi = red = nh3 = 0
+        
     if particle_sensor:
         while True:
             try:
@@ -154,9 +167,9 @@ def read_data(time):
         'humi' : round(humidity, 1),
         'pres' : round(pressure,1),
         'lux'  : round(lux),
-        'oxi'  : round(gases.oxidising / 1000, 1),
-        'red'  : round(gases.reducing / 1000),
-        'nh3'  : round(gases.nh3 / 1000),
+        'oxi'  : oxi,
+        'red'  : red,
+        'nh3'  : nh3,
         'pm03' : pm3,
         'pm05' : pm5,
         'pm10' : pm10,
@@ -241,7 +254,7 @@ def index():
 def readings():
     arg = request.args["fan"]
     pwm.ChangeDutyCycle(int(arg))
-    return render_template('readings.html' if particle_sensor else 'readings_np.html', **record) 
+    return render_template('readings.html' if particle_sensor else 'readings_np.html' if gas_sensor else 'readings_ng.html', **record) 
 
 def compress_data(ndays, nsamples):
     cdata = []
