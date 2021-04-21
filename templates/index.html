@@ -63,11 +63,13 @@ function getData() {
 }
 
 var last_frequency = "";
-var count = 0;
+var last_graph = 0;
 function getGraph() {
   var frequency = document.getElementById("graph-sel").value;
-  if(frequency != last_frequency || ++count % frequencies[frequency].poll == 0) {
+  var t = Date.now() / 1000;
+  if(frequency != last_frequency || t - last_graph >= frequencies[frequency].poll) {
       last_frequency = frequency;
+      last_graph = t;
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -157,7 +159,6 @@ function graph(d) {
 		ctx.fillText(i / yScaleSteps, yLabelHeight, y);
 		ctx.moveTo(yLabelWidth, y)
 		ctx.lineTo(canvas.width, y)
-		count++;
 	}
 	ctx.stroke();
 	
