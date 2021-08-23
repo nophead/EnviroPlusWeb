@@ -8,11 +8,14 @@ body {
 }
 
 .header {
-    text-align: center;
+    display: flex;
+}
+.header .header-title {
+    margin-right: auto;
 }
 
-.main > table{
-    margin: 0 auto;
+.main {
+    display: flex;
 }
 
 .footer{
