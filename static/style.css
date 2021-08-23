@@ -9,6 +9,7 @@ body {
 
 .header {
     display: flex;
+    border-bottom: 1px solid #ccc;
 }
 .header .header-title {
     margin-right: auto;
