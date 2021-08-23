@@ -16,37 +16,44 @@
 
 <body>
 	<header class="header">
-		<h1>Enviro Plus Web</h1>
+		<div class="header-title">
+			<h1>Enviro Plus Web</h1>
+		</div>
+			
+		<div>
+			<label for="graph-sel">Time range:</label>
+			<select id="graph-sel">
+				<option value = "5min">5 minutes</option>
+				<option value = "day">Day</option>
+				<option value = "week">Week</option>
+				<option value = "month">Month</option>
+				<option value = "year">Year</option>
+			</select>
+		</div>
+		<div>
+			<label for="fan">Fan:</label>
+			<input id="fan" type="number" min="0" max="100" step="5" value="100" size="3" name="fan">
+		</div>		
 	</header>
 	
 	<main class="main">
-		<table>
-		  <tr>
-		    <td valign = "top"><span id = "readings">---</span><br>
-				<table>
-				   <tr><td><label for="graph-sel">Graph:</label></td>
-				       <td><select id="graph-sel">
-								<option value = "5min">5 minutes</option>
-								<option value = "day">day</option>
-								<option value = "week">week</option>
-								<option value = "month">month</option>
-								<option value = "year">year</option>
-							</select>
-						</td>
-					</tr>
-					<tr><td><label for="fan">Fan:</label></td>
-				<td><input id="fan" type="number" min="0" max="100" step="5" value="100" size="3" name="fan"></td>
-					</tr>
-				</table>
-		    </td>
-		    <td><canvas id="canvas" height="400" width="600"></canvas><br><br>
-			<table style="width:600px"><tr id = "legend"></tr><tr id = "range"></tr></table>
-		    </td>
-		  </tr>
-		</table>
+		<div class="container-readings">
+			<span id="readings">---</span>
+		</div>
+			  
+		<div class="container-graph">
+			<canvas id="canvas" height="400" width="600"></canvas>
+			<br><br>
+			<table style="width:600px">
+				<tr id="legend"></tr>
+				<tr id="range"></tr>
+			</table>
+		</div>
+			  
 	</main>
 	
 	<footer class="footer">
+		
 	</footer>
 
 <script>
