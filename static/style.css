@@ -3,3 +3,15 @@ body {
     color: #000088;
     font-family: Arial, Helvetica, Sans-Serif;
 }
+
+.header {
+    text-align: center;
+}
+
+.main{
+    margin: 0 auto;
+}
+
+.footer{
+    text-align: center;   
+}
