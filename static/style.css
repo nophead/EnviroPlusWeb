@@ -30,6 +30,7 @@ h1 {
 }
 .header-settings {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   margin: 0 0 0 auto;
 }
@@ -55,6 +56,10 @@ h1 {
 .container-readings,
 .container-graph {
   margin: 0 2rem 2rem 2rem;
+}
+.graph-legend{
+width: 37.5rem;
+margin-top: 2rem;
 }
 
 .footer {
