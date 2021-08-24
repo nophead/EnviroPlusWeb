@@ -67,7 +67,7 @@ h1 {
   padding-bottom: 1rem;
 }
 .container-readings tr:nth-child(even){
-    color: #333;
+    color: #505050;
 }
 .container-readings td{
     padding-bottom: 0.35rem;
