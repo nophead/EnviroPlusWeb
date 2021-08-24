@@ -7,13 +7,14 @@ body {
   font-family: Arial, Helvetica, Sans-Serif;
   font-size: 16px; /* 1rem */
 }
-select, input {
-    background-color: white;
-    padding: 0.25rem;
-    border-radius: 0.25rem;
+select,
+input {
+  background-color: white;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
 }
 input[type="number"] {
-    width: 3.25rem;
+  width: 3.25rem;
 }
 
 .header {
@@ -39,24 +40,27 @@ h1 {
   border-left: 1px solid #ccc;
 }
 .header-icon {
-  max-width: 2rem;
+  width: 2rem;
   max-height: 3rem;
   margin-right: 1rem;
 }
 
 .main {
   display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
   margin: 3rem 0;
 }
-.container-readings {
-  margin: 0 2rem 0 auto;
-}
+.container-readings,
 .container-graph {
-  margin: 0 auto 0 2rem;
+  margin: 0 2rem 2rem 2rem;
 }
 
 .footer {
+  padding: 1rem;
   text-align: center;
+  background-color: #ddd;
 }
 
 /* a11y */
