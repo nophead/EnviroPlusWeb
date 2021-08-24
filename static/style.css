@@ -7,6 +7,14 @@ body {
   font-family: Arial, Helvetica, Sans-Serif;
   font-size: 16px; /* 1rem */
 }
+select, input {
+    background-color: white;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+}
+input[type="number"] {
+    width: 3.25rem;
+}
 
 .header {
   display: flex;
@@ -24,15 +32,11 @@ h1 {
   align-items: center;
   margin: 0 0 0 auto;
 }
-
 .header-settings > div {
   padding: 0 2rem;
   display: flex;
   align-items: center;
   border-left: 1px solid #ccc;
-}
-.header-settings > div:last-child {
-  padding-right: 1rem;
 }
 .header-icon {
   max-width: 2rem;
