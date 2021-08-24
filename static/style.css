@@ -17,35 +17,38 @@ body {
   margin: 0 auto 0 1rem;
 }
 h1 {
-    margin: 0.4rem 0;
+  margin: 0.4rem 0;
 }
 .header-settings {
-    display: flex;
-    align-items: center;
-    margin: 0 1rem 0 auto;
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 auto;
 }
 
 .header-settings > div {
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    border-left: 1px solid #ccc;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #ccc;
+}
+.header-settings > div:last-child {
+  padding-right: 1rem;
 }
 .header-icon {
-    max-width: 2rem;
-    max-height: 3rem;
-    margin-right: 1rem;
+  max-width: 2rem;
+  max-height: 3rem;
+  margin-right: 1rem;
 }
 
 .main {
   display: flex;
   margin: 3rem 0;
 }
-.container-readings{
-    margin: 0 2rem 0 auto;
+.container-readings {
+  margin: 0 2rem 0 auto;
 }
-.container-graph{
-    margin: 0 auto 0 2rem;
+.container-graph {
+  margin: 0 auto 0 2rem;
 }
 
 .footer {
@@ -54,11 +57,11 @@ h1 {
 
 /* a11y */
 .visually-hidden:not(:focus):not(:active) {
-    clip: rect(0 0 0 0); 
-    clip-path: inset(100%); 
-    height: 1px; 
-    overflow: hidden; 
-    position: absolute; 
-    white-space: nowrap; 
-    width: 1px; 
-  }
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
