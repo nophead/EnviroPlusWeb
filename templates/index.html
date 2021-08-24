@@ -9,7 +9,7 @@
   <base href="/" />
   <meta name="keywords" content="Enviro+, EnviroPlus, RaspberryPi" />
   <meta name="description" content="Web interface for Enviro+ sensor board plugged into a Raspberry Pi" />
-  <meta name="theme-color" content="#d96500" />
+  <meta name="theme-color" content="#cccccc" />
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <link rel="stylesheet" href="/static/style.css" media="all" />
 </head>
@@ -59,7 +59,7 @@
   <!-- Main content -->
   <main class="main">
     <div class="container-readings">
-      <span id="readings">---</span>
+      <span id="readings">...</span>
     </div>
 
     <div class="container-graph">
@@ -75,9 +75,10 @@
 
   <!-- Footer -->
   <footer class="footer">
-    Enviro Plus Web open-source code available at <a href="https://github.com/nophead/EnviroPlusWeb" class="header-icon" target="_blank" rel="noopener noreferrer"></a>GitHub</a>
+    Enviro Plus Web open-source code available at <a href="https://github.com/nophead/EnviroPlusWeb" target="_blank" rel="noopener noreferrer">GitHub</a>
   </footer>
 
+  <!-- Javascript -->
   <script>
     setInterval(function () {
       // Call a function repetitively with 1 second interval
