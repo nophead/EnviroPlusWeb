@@ -27,6 +27,9 @@ h1 {
 
 .header-settings > div {
     padding: 0 0 0 1rem;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #ccc;
 }
 
 .main {
