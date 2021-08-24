@@ -31,6 +31,10 @@ h1 {
     align-items: center;
     border-left: 1px solid #ccc;
 }
+.header-icon {
+    max-width: 3rem;
+    max-height: 3rem;
+}
 
 .main {
   display: flex;
