@@ -57,6 +57,11 @@ h1 {
 .container-graph {
   margin: 0 2rem 2rem 2rem;
 }
+.readings-time{
+    font-size: 1.20rem;
+    font-weight: bold;
+    padding-bottom: 1rem;
+}
 .graph-legend{
 width: 37.5rem;
 margin-top: 2rem;
