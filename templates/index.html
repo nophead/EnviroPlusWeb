@@ -50,7 +50,7 @@
         <label for="fan" class="visually-hidden">
           Particule Matter Fan power
         </label>
-        <input id="fan" type="number" min="0" max="100" step="5" value="100" size="3" name="fan">
+        <input id="fan" type="number" min="0" max="100" step="5" value="100" name="fan">
       </div>
 
     </div>
@@ -66,8 +66,15 @@
       <canvas id="canvas" height="400" width="600"></canvas>
 
       <table class="graph-legend">
-        <tr id="legend"></tr>
-        <tr id="range"></tr>
+        <caption>
+          Color codes and ranges
+        </caption>
+        <thead>
+          <tr id="legend"></tr>
+        </thead>
+        <tbody>
+          <tr id="range"></tr>
+        </tbody>
       </table>
     </div>
 
