@@ -43,6 +43,11 @@ h1 {
   align-items: center;
   border-left: 1px solid #ccc;
 }
+@media screen and (max-width: 640px) {
+  .header-settings > div {
+    padding: 0 1rem;
+  }
+}
 .header-icon {
   width: 2rem;
   max-height: 3rem;
