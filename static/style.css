@@ -26,7 +26,7 @@ input[type="number"] {
   box-shadow: 0 0.5rem 1rem 0 rgba(133, 133, 133, 1);
 }
 .header-title {
-  margin: 0 auto 0 1rem;
+  margin: 0 1rem;
 }
 h1 {
   margin: 0.4rem 0;
@@ -71,6 +71,10 @@ h1 {
 }
 .container-readings td{
     padding-bottom: 0.35rem;
+}
+.container-graph {
+  overflow: auto;
+  padding-bottom: 1rem;
 }
 .graph-legend {
   width: 37.5rem;
