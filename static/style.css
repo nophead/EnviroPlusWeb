@@ -50,7 +50,7 @@ h1 {
 }
 
 .main {
-  height: calc(100% - 12.25rem);
+  min-height: calc(100% - 12.25rem);
   display: flex;
   justify-content: center;
   align-items: flex-start;
