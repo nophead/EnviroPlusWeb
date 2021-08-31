@@ -182,8 +182,11 @@
       ctx.fillStyle = "#0099ff"
       ctx.font = "20 pt Verdana"
 
+      // yScale = (canvas.height - yLabelHeight - xLabelHeight);
+      // xScale = (canvas.width - yLabelWidth) / (data.length - 1);
+
       yScale = (canvas.height - yLabelHeight - xLabelHeight);
-      xScale = (canvas.width - yLabelWidth) / (data.length - 1);
+      xScale = (containerCanvas.offsetWidth - yLabelWidth) / (data.length - 1);
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       // Print X axis vertical time lines

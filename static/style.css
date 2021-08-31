@@ -79,12 +79,13 @@ h1 {
     padding-bottom: 0.35rem;
 }
 .container-graph {
-  width: 100%;
+  flex-grow: 1;
   overflow: auto;
   padding-bottom: 1rem;
 }
 .container-graph > canvas {
   width: 100%;
+  display: block;
 }
 .graph-legend {
   width: 37.5rem;
