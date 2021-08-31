@@ -180,7 +180,7 @@
       console.log('containerCanvas:', containerCanvas);
       canvas = document.getElementById("canvas-graph");
       if (firstLayoutRender){
-        canvas.height = containerCanvas.offsetHeight;
+        canvas.height = containerCanvas.offsetHeight - 380;
         canvas.width = containerCanvas.offsetWidth;
         console.log('canvas', canvas);
         firstLayoutRender = false;
