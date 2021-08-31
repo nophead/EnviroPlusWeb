@@ -62,8 +62,8 @@
       <span id="readings">Connecting...</span>
     </div>
 
-    <div class="container-graph">
-      <canvas id="canvas" height="400" width="600"></canvas>
+    <div id="container-graph" class="container-graph">
+      <canvas id="canvas" height="400"></canvas>
 
       <table class="graph-legend">
         <caption class="visually-hidden">
@@ -163,6 +163,7 @@
       { name: "pm100", colour: "#909090", min: 0, max: 100 },
     ];
 
+    var containerCanvas;
     var canvas;
     var ctx;
     var data;
@@ -174,6 +175,8 @@
     var yLabelWidth = 25;
     function graph(d) {
       data = d;
+      containerCanvas = document.getElementById("container-graph");
+      console.log('containerCanvas:', containerCanvas);
       canvas = document.getElementById("canvas");
       ctx = canvas.getContext("2d");
       ctx.fillStyle = "#0099ff"

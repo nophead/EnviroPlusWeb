@@ -79,8 +79,12 @@ h1 {
     padding-bottom: 0.35rem;
 }
 .container-graph {
+  width: 100%;
   overflow: auto;
   padding-bottom: 1rem;
+}
+.container-graph > canvas {
+  width: 100%;
 }
 .graph-legend {
   width: 37.5rem;
