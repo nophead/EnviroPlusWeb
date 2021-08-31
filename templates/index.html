@@ -63,27 +63,30 @@
     </div>
 
     <div id="container-graph" class="container-graph">
-      <canvas id="canvas-graph"></canvas>
+      <div>
+        <canvas id="canvas-graph"></canvas>
+      </div>
+      
+      <div>
+        <table class="graph-legend">
+          <caption class="visually-hidden">
+            Color codes and ranges
+          </caption>
+          <thead>
+            <tr id="legend">
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="range">
+              <td></td>
+            </tr>
+          </tbody>
+        </table>  
+      </div>
+      
     </div>
   </main>
-
-  <div>
-    <table class="graph-legend">
-      <caption class="visually-hidden">
-        Color codes and ranges
-      </caption>
-      <thead>
-        <tr id="legend">
-          <td></td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr id="range">
-          <td></td>
-        </tr>
-      </tbody>
-    </table>  
-  </div>
 
   <!-- Footer -->
   <footer class="footer">
