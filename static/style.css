@@ -57,10 +57,8 @@ h1 {
 
 .main {
   min-height: calc(100% - 12.25rem);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: fit-content(15rem) 1fr;
   margin: 3rem 0;
 }
 .container-readings,
@@ -79,7 +77,6 @@ h1 {
     padding-bottom: 0.35rem;
 }
 .container-graph {
-  flex-grow: 1;
   overflow: auto;
   padding-bottom: 1rem;
 }
