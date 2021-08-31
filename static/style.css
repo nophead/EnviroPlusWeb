@@ -58,7 +58,7 @@ h1 {
 .main {
   min-height: calc(100% - 12.25rem);
   display: grid;
-  grid-template-columns: fit-content(15rem) 1fr;
+  grid-template-columns: fit-content(20rem) 1fr;
   margin: 3rem 0;
 }
 .container-readings,
