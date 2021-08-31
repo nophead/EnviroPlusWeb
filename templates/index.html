@@ -163,6 +163,7 @@
       { name: "pm100", colour: "#909090", min: 0, max: 100 },
     ];
 
+    var firstLayoutRender = true;
     var containerCanvas;
     var canvas;
     var ctx;
@@ -178,9 +179,13 @@
       containerCanvas = document.getElementById("container-graph");
       console.log('containerCanvas:', containerCanvas);
       canvas = document.getElementById("canvas-graph");
-      canvas.height = containerCanvas.offsetHeight;
-      canvas.width = containerCanvas.offsetWidth;
-      console.log('canvas', canvas);
+      if (firstLayoutRender){
+        canvas.height = containerCanvas.offsetHeight;
+        canvas.width = containerCanvas.offsetWidth;
+        console.log('canvas', canvas);
+        firstLayoutRender = false;
+      }
+
 
       ctx = canvas.getContext("2d");
       ctx.fillStyle = "#0099ff"
