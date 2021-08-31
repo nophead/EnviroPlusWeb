@@ -63,7 +63,7 @@ h1 {
 }
 .container-readings,
 .container-graph {
-  margin: 0 2rem 2rem 2rem;
+  margin: 0 2rem;
 }
 .readings-time {
   font-size: 1.2rem;
@@ -87,6 +87,8 @@ h1 {
 .graph-legend {
   width: 37.5rem;
   margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;  
 }
 
 .footer {
