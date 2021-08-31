@@ -63,7 +63,7 @@
     </div>
 
     <div id="container-graph" class="container-graph">
-      <canvas id="canvas" height="400"></canvas>
+      <canvas id="canvas-graph"></canvas>
 
       <table class="graph-legend">
         <caption class="visually-hidden">
@@ -177,16 +177,16 @@
       data = d;
       containerCanvas = document.getElementById("container-graph");
       console.log('containerCanvas:', containerCanvas);
-      canvas = document.getElementById("canvas");
+      canvas = document.getElementById("canvas-graph");
+      canvas.height = containerCanvas.offsetHeight;
+      canvas.width = containerCanvas.offsetWidth;
+
       ctx = canvas.getContext("2d");
       ctx.fillStyle = "#0099ff"
       ctx.font = "20 pt Verdana"
 
-      // yScale = (canvas.height - yLabelHeight - xLabelHeight);
-      // xScale = (canvas.width - yLabelWidth) / (data.length - 1);
-
       yScale = (canvas.height - yLabelHeight - xLabelHeight);
-      xScale = (containerCanvas.offsetWidth - yLabelWidth) / (data.length - 1);
+      xScale = (canvas.width - yLabelWidth) / (data.length - 1);
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       // Print X axis vertical time lines
