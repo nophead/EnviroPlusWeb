@@ -143,25 +143,25 @@
     }
 
     var items_ngp = [
-      { name: "temp", colour: "#FF0000", min: 0, max: 50 },
-      { name: "humi", colour: "#0000FF", min: 0, max: 100 },
-      { name: "pres", colour: "green", min: 950, max: 1050 },
-      { name: "lux", colour: "#FFFF00", min: 0, max: 25000 },
+      { name: "Temp", colour: "red", min: 0, max: 50 },
+      { name: "Humi", colour: "blue", min: 0, max: 100 },
+      { name: "Press", colour: "green", min: 950, max: 1050 },
+      { name: "Lux", colour: "yellow", min: 0, max: 25000 },
     ]
 
     var items_g = [
-      { name: "oxi", colour: "#00FFFF", min: 0, max: 400 },
-      { name: "red", colour: "darkorange", min: 0, max: 1000 },
-      { name: "nh3", colour: "#FF00FF", min: 0, max: 600 },
+      { name: "Oxi", colour: "cyan", min: 0, max: 400 },
+      { name: "Red", colour: "darkorange", min: 0, max: 1000 },
+      { name: "Nh3", colour: "pink", min: 0, max: 600 },
     ]
 
     var items_p = [
-      { name: "pm03", colour: "#000000", min: 0, max: 20000 },
-      { name: "pm05", colour: "#181818", min: 0, max: 10000 },
-      { name: "pm10", colour: "#303030", min: 0, max: 2000 },
-      { name: "pm25", colour: "#505050", min: 0, max: 500 },
-      { name: "pm50", colour: "#707070", min: 0, max: 200 },
-      { name: "pm100", colour: "#909090", min: 0, max: 100 },
+      { name: "Pm03", colour: "dimgray", min: 0, max: 20000 },
+      { name: "Pm05", colour: "gray", min: 0, max: 10000 },
+      { name: "Pm10", colour: "darkgray", min: 0, max: 2000 },
+      { name: "Pm25", colour: "silver", min: 0, max: 500 },
+      { name: "Pm50", colour: "lightgray", min: 0, max: 200 },
+      { name: "Pm100", colour: "gainsboro", min: 0, max: 100 },
     ];
 
     var firstLayoutRender = true;
@@ -187,7 +187,6 @@
         console.log('canvas', canvas);
         firstLayoutRender = false;
       }
-
 
       ctx = canvas.getContext("2d");
       ctx.fillStyle = "#0099ff"
@@ -247,7 +246,7 @@
         ctx.strokeStyle = item.colour;
         plotData(item.name, item.min, item.max);
         keys += '<td style="color:' + item.colour + '"> ' + item.name + ' </td>';
-        ranges += '<td>/' + (item.max - item.min) + '</td>';
+        ranges += '<td>[' + item.max + '/' + item.min + ']</td>';
       }
       // Update the legend
       document.getElementById("legend").innerHTML = keys;
