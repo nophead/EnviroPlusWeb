@@ -77,7 +77,8 @@ h1 {
     padding-bottom: 0.35rem;
 }
 .container-readings hr {
-  border-top: 1px solid white;
+  border-top: 1px solid silver;
+  color: transparent;
 }
 .container-graph {
   overflow: auto;
