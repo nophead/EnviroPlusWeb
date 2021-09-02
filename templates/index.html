@@ -89,28 +89,7 @@
     </div>
 
     <div id="container-graph" class="container-graph">
-      <div>
-        <canvas id="canvas-graph"></canvas>
-      </div>
-
-      <div>
-        <table class="legend-graph">
-          <caption class="visually-hidden">
-            Color codes and ranges
-          </caption>
-          <thead>
-            <tr id="legend">
-              <td></td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr id="range">
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
+      <canvas id="canvas-graph"></canvas>
     </div>
   </main>
 
@@ -268,20 +247,20 @@
       ctx.stroke();
 
       // Plot each item
-      var keys = "";
-      var ranges = "";
+      // var keys = "";
+      // var ranges = "";
       var items = particle_sensor ? items_ngp.concat(items_g).concat(items_p) :
         gas_sensor ? items_ngp.concat(items_g) : items_ngp;
       for (var item of items) {
         ctx.strokeStyle = item.colour;
         plotData(item.name, item.min, item.max);
-        keys += '<th class="keys" style="color:' + item.colour + '"> &#9632; ' + item.name + ' </th>';
-        ranges += '<td class="ranges" style="color:' + item.colour + '">[' + item.min + '/' + item.max + ']</td>';
+        // keys += '<th class="keys" style="color:' + item.colour + '"> &#9632; ' + item.name + ' </th>';
+        // ranges += '<td class="ranges" style="color:' + item.colour + '">[' + item.min + '/' + item.max + ']</td>';
       }
 
       // Update the legend
-      document.getElementById("legend").innerHTML = keys;
-      document.getElementById("range").innerHTML = ranges;
+      // document.getElementById("legend").innerHTML = keys;
+      // document.getElementById("range").innerHTML = ranges;
     }
 
     function scaley(y, min, max) {
