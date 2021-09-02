@@ -109,3 +109,44 @@ h1 {
   white-space: nowrap;
   width: 1px;
 }
+
+/* colors */
+.color-red{
+  color: red;
+}
+.color-blue{
+  color: blue;
+}
+.color-green{
+  color: green;
+}
+.color-yellow{
+  color: yellow;
+}
+.color-cyan{
+  color: cyan;
+}
+.color-darkorange{
+  color: darkorange;
+}
+.color-orchid{
+  color: orchid;
+}
+.color-dimgray{
+  color: dimgray;
+}
+.color-gray{
+  color: gray;
+}
+.color-darkgray{
+  color: darkgray;
+}
+.color-silver{
+  color: silver;
+}
+.color-lightgray{
+  color: lightgray;
+}
+.color-gainsboro{
+  color: gainsboro;
+}
