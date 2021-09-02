@@ -112,41 +112,41 @@ h1 {
 
 /* colors */
 .color-red{
-  color: red;
+  color: #ff595e;
 }
 .color-blue{
-  color: blue;
+  color: #1982c4;
 }
 .color-green{
-  color: green;
+  color: #8ac926;
 }
 .color-yellow{
-  color: yellow;
+  color: #ffca3a;
 }
 .color-cyan{
-  color: cyan;
+  color: #83C5BE;
 }
 .color-darkorange{
   color: darkorange;
 }
-.color-orchid{
-  color: orchid;
+.color-violet{
+  color: #6a4c93;
 }
-.color-dimgray{
-  color: dimgray;
+.color-brown70{
+  color: #774936;
 }
-.color-gray{
-  color: gray;
+.color-brown60{
+  color: #9d6b53;
 }
-.color-darkgray{
-  color: darkgray;
+.color-brown50{
+  color: #c38e70;
 }
-.color-silver{
-  color: silver;
+.color-brown40{
+  color: #d69f7e;
 }
-.color-lightgray{
-  color: lightgray;
+.color-brown30{
+  color: #e6b8a2;
 }
-.color-gainsboro{
-  color: gainsboro;
+.color-brown20{
+  color: #edc4b3;
 }
