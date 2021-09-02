@@ -236,8 +236,7 @@
       // Print Y axis labels and draw horizontal grid lines
       ctx.beginPath();
       ctx.strokeStyle = "#B0B0B0"; // colour of grid lines
-      ctx.moveTo(0, 50);
-      ctx.lineTo(300, 50);
+      ctx.setLineDash([5, 3]);
       ctx.textAlign = 'left';
       for (var i = 0; i <= yScaleSteps; i++) {
         var y = yScale * (yScaleSteps - i) / yScaleSteps + yLabelHeight - 1;
