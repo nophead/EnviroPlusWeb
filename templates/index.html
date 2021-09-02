@@ -94,7 +94,7 @@
       </div>
 
       <div>
-        <table class="graph-legend">
+        <table class="legend-graph">
           <caption class="visually-hidden">
             Color codes and ranges
           </caption>
@@ -275,8 +275,8 @@
       for (var item of items) {
         ctx.strokeStyle = item.colour;
         plotData(item.name, item.min, item.max);
-        keys += '<td style="color:' + item.colour + '"> &#9632;' + item.name + ' </td>';
-        ranges += '<td style="color:' + item.colour + '">[' + item.min + '/' + item.max + ']</td>';
+        keys += '<th class="keys" style="color:' + item.colour + '"> &#9632; ' + item.name + ' </th>';
+        ranges += '<td class="ranges" style="color:' + item.colour + '">[' + item.min + '/' + item.max + ']</td>';
       }
 
       // Update the legend

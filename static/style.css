@@ -80,12 +80,15 @@ h1 {
   overflow: auto;
   padding-bottom: 1rem;
 }
-.container-graph > canvas {
+.container-graph canvas {
   width: 100%;
   display: block;
 }
-.graph-legend {
+.legend-graph {
   margin: 0 auto;
+}
+.legend-graph .ranges{
+  font-size: 0.75rem;
 }
 
 .footer {
