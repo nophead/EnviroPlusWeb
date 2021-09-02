@@ -76,6 +76,9 @@ h1 {
 .container-readings td{
     padding-bottom: 0.35rem;
 }
+.container-readings hr {
+  border-top: 1px solid white;
+}
 .container-graph {
   overflow: auto;
   padding-bottom: 1rem;
@@ -130,7 +133,7 @@ h1 {
   color: #ce7100;
 }
 .color-cyan{
-  color: #368f86;
+  color: #6ca88a;
 }
 .color-pmColor100{
   color: #5c0000;
