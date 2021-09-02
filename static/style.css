@@ -123,30 +123,30 @@ h1 {
 .color-yellow{
   color: #d39e0c;
 }
-.color-cyan{
-  color: #368f86;
-}
-.color-darkorange{
-  color: rgb(180, 99, 0);
-}
 .color-violet{
   color: #6a4c93;
 }
+.color-darkorange{
+  color: rgb(206, 113, 0);
+}
+.color-cyan{
+  color: #368f86;
+}
+.color-brown100{
+  color: #1e140b;
+}
+.color-brown90{
+  color: #3c2816;
+}
+.color-brown80{
+  color: #593c21;
+}
 .color-brown70{
-  color: #774936;
+  color: #77502c;
 }
 .color-brown60{
-  color: #9d6b53;
+  color: #865a32;
 }
 .color-brown50{
-  color: #c38e70;
-}
-.color-brown40{
-  color: #d69f7e;
-}
-.color-brown30{
-  color: #e6b8a2;
-}
-.color-brown20{
-  color: #edc4b3;
+  color: #a46e3d;
 }
