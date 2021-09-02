@@ -227,6 +227,7 @@
               : fields[3].slice(0, 5), x, canvas.height);
           ctx.beginPath();
           ctx.strokeStyle = is_major ? "#808080" : "#B0B0B0"; // colour of grid lines
+          ctx.setLineDash([5, 3]);
           ctx.moveTo(x, 0);
           ctx.lineTo(x, canvas.height - xLabelHeight);
           ctx.stroke();
@@ -236,7 +237,6 @@
       // Print Y axis labels and draw horizontal grid lines
       ctx.beginPath();
       ctx.strokeStyle = "#B0B0B0"; // colour of grid lines
-      ctx.setLineDash([5, 3]);
       ctx.textAlign = 'left';
       for (var i = 0; i <= yScaleSteps; i++) {
         var y = yScale * (yScaleSteps - i) / yScaleSteps + yLabelHeight - 1;
