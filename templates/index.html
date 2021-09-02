@@ -190,7 +190,6 @@
       // console.log('containerCanvas:', containerCanvas);
       canvas = document.getElementById("canvas-graph");
       if (firstLayoutRender) {
-        // canvas.height = containerCanvas.offsetHeight >= 580 ? containerCanvas.offsetHeight - 360 : containerCanvas.offsetHeight - 60;
         canvas.height = containerCanvas.offsetHeight;
         canvas.width = containerCanvas.offsetWidth;
         console.log('canvas', canvas);
@@ -237,6 +236,8 @@
       // Print Y axis labels and draw horizontal grid lines
       ctx.beginPath();
       ctx.strokeStyle = "#B0B0B0"; // colour of grid lines
+      ctx.moveTo(0, 50);
+      ctx.lineTo(300, 50);
       ctx.textAlign = 'left';
       for (var i = 0; i <= yScaleSteps; i++) {
         var y = yScale * (yScaleSteps - i) / yScaleSteps + yLabelHeight - 1;
