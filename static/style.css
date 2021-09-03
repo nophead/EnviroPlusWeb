@@ -99,8 +99,9 @@ h1 {
 
 .footer {
   padding: 1rem;
+  color: #777;
   text-align: center;
-  background-color: #ddd;
+  background-color: #eee;
 }
 
 /* a11y */
