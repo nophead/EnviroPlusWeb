@@ -187,12 +187,10 @@
     function graph(d) {
       data = d;
       containerCanvas = document.getElementById("container-graph");
-      // console.log('containerCanvas:', containerCanvas);
       canvas = document.getElementById("canvas-graph");
       if (firstLayoutRender) {
         canvas.height = containerCanvas.offsetHeight;
         canvas.width = containerCanvas.offsetWidth;
-        console.log('canvas', canvas);
         firstLayoutRender = false;
       }
 
