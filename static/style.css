@@ -88,14 +88,16 @@ h1 {
   width: 100%;
   display: block;
 }
-/*
-.legend-graph {
-  margin: 0 auto;
+.container-scale-factors details{
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: .5em .5em 0;
 }
-.legend-graph .ranges{
-  font-size: 0.75rem;
+.container-scale-factors details > summary {
+  border: none;
+  cursor: pointer;
+  list-style: none;
 }
-*/
 
 .footer {
   padding: 1rem;
