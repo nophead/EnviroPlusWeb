@@ -9,12 +9,12 @@
   <base href="/" />
   <meta name="keywords" content="Enviro+, EnviroPlus, RaspberryPi" />
   <meta name="description" content="Web interface for Enviro+ sensor board plugged into a Raspberry Pi" />
-  <meta name="theme-color" content="#b8b8b8" />
+  <meta name="theme-color" content="#b0b0b0" />
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <link rel="stylesheet" href="/static/style.css" media="all" />
 </head>
 
-<body onResize="window.location.href = window.location.href;">
+<body>
   <!-- Header -->
   <header class="header">
     <div class="header-title">
@@ -170,7 +170,7 @@
       { name: "pm10", colour: "#7c7c7c", min: 0, max: 2000 },
       { name: "pm25", colour: "#909090", min: 0, max: 500 },
       { name: "pm50", colour: "#a4a4a4", min: 0, max: 200 },
-      { name: "pm100", colour: "#b8b8b8", min: 0, max: 100 },
+      { name: "pm100", colour: "#b0b0b0", min: 0, max: 100 },
     ];
 
     var firstLayoutRender = true;
@@ -275,6 +275,12 @@
       }
       ctx.stroke();
     }
+
+    // Update the graph (width/height) if windows resize
+    window.addEventListener("resize", function(){
+      firstLayoutRender = true;
+      getGraph();
+    });
 
   </script>
 
