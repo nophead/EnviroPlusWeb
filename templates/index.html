@@ -86,6 +86,34 @@
   <main class="main">
     <div class="container-readings">
       <div id="readings">Connecting...</div>
+      <div id="scale-factors">
+        Scale factors
+        <table>
+          <tbody>
+            <tr>
+              <td>Temperature</td>
+              <td>:50</td>
+            </tr>
+            <tr>
+              <td>Humidity</td>
+              <td>:100</td>
+            </tr>
+            <tr>
+              <td>Pressure</td>
+              <td>:100</td>
+            </tr>
+            <tr>
+              <td>Light</td>
+              <td>:5000</td>
+            </tr>   
+            <tr>
+              <td>Oxidising</td>
+              <td>:100</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
     </div>
 
     <div id="container-graph" class="container-graph">
@@ -276,7 +304,7 @@
       ctx.stroke();
     }
 
-    // Update the graph (width/height) if windows resize
+    // Update the graph layout (width/height) if window resize
     window.addEventListener("resize", function(){
       firstLayoutRender = true;
       getGraph();
