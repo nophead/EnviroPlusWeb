@@ -107,11 +107,9 @@ h1 {
   list-style: none;
 }
 .container-scale-factors details > summary:after{
-  content: '';
-  border: 4px solid transparent;
-  border-top: 4px solid black;
-  right: 0.75rem;
-  top: 1rem;
+  content: "\2304";
+  right: 0.5rem;
+  top: 0.5rem;
   position: absolute;
 }
 .container-scale-factors details[open] > summary {
@@ -120,8 +118,7 @@ h1 {
   margin-bottom: 0.5rem;
 }
 .container-scale-factors details[open] > summary:after{
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid black;
+  content: "\2303";
 }
 
 .footer {

@@ -91,26 +91,6 @@
           <summary>Scale factors</summary>
           <table class="scale-factors">
             <tbody id="scale-factors-tbody">
-              <tr>
-                <td>Temperature</td>
-                <td>/50</td>
-              </tr>
-              <tr>
-                <td>Humidity</td>
-                <td>/100</td>
-              </tr>
-              <tr>
-                <td>Pressure</td>
-                <td>/100</td>
-              </tr>
-              <tr>
-                <td>Light</td>
-                <td>/5000</td>
-              </tr>   
-              <tr>
-                <td>Oxidising</td>
-                <td>/100</td>
-              </tr>
             </tbody>
           </table>
         </details>
@@ -274,22 +254,17 @@
       ctx.stroke();
 
       // Plot each item
-      // var keys = "";
-      // var ranges = "";
       var scaleFactors = "";
       var items = particle_sensor ? items_ngp.concat(items_g).concat(items_p) :
         gas_sensor ? items_ngp.concat(items_g) : items_ngp;
       for (var item of items) {
         ctx.strokeStyle = item.colour;
         plotData(item.name, item.min, item.max);
-        // keys += '<th class="keys" style="color:' + item.colour + '"> &#9632; ' + item.name + ' </th>';
-        // ranges += '<td class="ranges" style="color:' + item.colour + '">[' + item.min + '/' + item.max + ']</td>';
-        scaleFactors += '<tr><td>' + item.name + '</td><td>' + item.min + '/' + item.max + '</td></tr>';
+        scaleFactors += '<tr><td>' + item.name + '</td><td>/' + (item.max - item.min) + '</td></tr>';
       }
 
       // Update the legend
-      // document.getElementById("scale-factors-tbody").innerHTML = ranges;
-      console.log('scaleFactors: ', scaleFactors);
+      document.getElementById("scale-factors-tbody").innerHTML = scaleFactors;
     }
 
     function scaley(y, min, max) {
