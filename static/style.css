@@ -114,6 +114,7 @@ h1 {
 .container-scale-factors details > summary:after {
   content: "\2304";
   position: absolute;
+  top: -0.25rem;
   right: 0;
 }
 .container-scale-factors details[open] > summary {
@@ -123,6 +124,7 @@ h1 {
 }
 .container-scale-factors details[open] > summary:after {
   content: "\2303";
+  top: 0.25rem;
 }
 
 .footer {
