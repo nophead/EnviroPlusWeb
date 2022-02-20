@@ -165,12 +165,12 @@
     ]
 
     var items_p = [
-      { name: "pm03", colour: "#5c0000", min: 0, max: 20000 },
-      { name: "pm05", colour: "#892657", min: 0, max: 10000 },
-      { name: "pm10", colour: "#8862ae", min: 0, max: 2000 },
-      { name: "pm25", colour: "#5d32d4", min: 0, max: 500 },
-      { name: "pm50", colour: "#2d2fbd", min: 0, max: 200 },
-      { name: "pm100", colour: "#00569c", min: 0, max: 100 },
+      { name: "pm03", colour: "#444444", min: 0, max: 20000 },
+      { name: "pm05", colour: "#5d5d5d", min: 0, max: 10000 },
+      { name: "pm10", colour: "#777777", min: 0, max: 2000 },
+      { name: "pm25", colour: "#939393", min: 0, max: 500 },
+      { name: "pm50", colour: "#afafaf", min: 0, max: 200 },
+      { name: "pm100", colour: "#cccccc", min: 0, max: 100 },
     ];
 
     var firstLayoutRender = true;
@@ -224,7 +224,7 @@
             ctx.fillText(show_date ? fields[0] + ' ' + fields[1] + ' ' + fields[2]
               : fields[3].slice(0, 5), x, canvas.height);
           ctx.beginPath();
-          ctx.strokeStyle = is_major ? "#929292" : "#B0B0B0"; // colour of grid lines
+          ctx.strokeStyle = is_major ? "#929292" : "#DCDCDC"; // colour of grid lines
           ctx.setLineDash([5, 3]);
           ctx.moveTo(x, 0);
           ctx.lineTo(x, canvas.height - xLabelHeight);
@@ -234,7 +234,7 @@
 
       // Print Y axis labels and draw horizontal grid lines
       ctx.beginPath();
-      ctx.strokeStyle = "#B0B0B0"; // colour of grid lines
+      ctx.strokeStyle = "#DCDCDC"; // colour of grid lines
       ctx.textAlign = 'left';
       for (var i = 0; i <= yScaleSteps; i++) {
         var y = yScale * (yScaleSteps - i) / yScaleSteps + yLabelHeight - 1;
