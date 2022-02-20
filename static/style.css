@@ -84,8 +84,13 @@ h1 {
   border-top: 1px solid silver;
   color: transparent;
 }
+.scale-factors {
+  width: 100%;
+}
 .scale-factors td {
   color: #505050;
+  padding-bottom: 0.5rem;
+  text-transform: capitalize;  
 }
 .container-graph {
   overflow: auto;
@@ -106,16 +111,17 @@ h1 {
   cursor: pointer;
   list-style: none;
 }
-.container-scale-factors details > summary:after{
+.container-scale-factors details > summary:after {
   content: "\2304";
   position: absolute;
+  right: 0;
 }
 .container-scale-factors details[open] > summary {
   border-bottom: 1px solid silver;
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
 }
-.container-scale-factors details[open] > summary:after{
+.container-scale-factors details[open] > summary:after {
   content: "\2303";
 }
 
