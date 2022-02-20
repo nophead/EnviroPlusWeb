@@ -9,7 +9,7 @@
   <base href="/" />
   <meta name="keywords" content="Enviro+, EnviroPlus, RaspberryPi" />
   <meta name="description" content="Web interface for Enviro+ sensor board plugged into a Raspberry Pi" />
-  <meta name="theme-color" content="#cccccc" />
+  <meta name="theme-color" content="#b8b8b8" />
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <link rel="stylesheet" href="/static/style.css" media="all" />
 </head>
@@ -165,12 +165,12 @@
     ]
 
     var items_p = [
-      { name: "pm03", colour: "#444444", min: 0, max: 20000 },
-      { name: "pm05", colour: "#5d5d5d", min: 0, max: 10000 },
-      { name: "pm10", colour: "#777777", min: 0, max: 2000 },
-      { name: "pm25", colour: "#939393", min: 0, max: 500 },
-      { name: "pm50", colour: "#afafaf", min: 0, max: 200 },
-      { name: "pm100", colour: "#cccccc", min: 0, max: 100 },
+      { name: "pm03", colour: "#575757", min: 0, max: 20000 },
+      { name: "pm05", colour: "#696969", min: 0, max: 10000 },
+      { name: "pm10", colour: "#7c7c7c", min: 0, max: 2000 },
+      { name: "pm25", colour: "#909090", min: 0, max: 500 },
+      { name: "pm50", colour: "#a4a4a4", min: 0, max: 200 },
+      { name: "pm100", colour: "#b8b8b8", min: 0, max: 100 },
     ];
 
     var firstLayoutRender = true;
@@ -224,7 +224,7 @@
             ctx.fillText(show_date ? fields[0] + ' ' + fields[1] + ' ' + fields[2]
               : fields[3].slice(0, 5), x, canvas.height);
           ctx.beginPath();
-          ctx.strokeStyle = is_major ? "#929292" : "#DCDCDC"; // colour of grid lines
+          ctx.strokeStyle = is_major ? "#b6b6b6" : "#dcdcdc"; // colour of grid lines
           ctx.setLineDash([5, 3]);
           ctx.moveTo(x, 0);
           ctx.lineTo(x, canvas.height - xLabelHeight);
@@ -234,7 +234,7 @@
 
       // Print Y axis labels and draw horizontal grid lines
       ctx.beginPath();
-      ctx.strokeStyle = "#DCDCDC"; // colour of grid lines
+      ctx.strokeStyle = "#dcdcdc"; // colour of grid lines
       ctx.textAlign = 'left';
       for (var i = 0; i <= yScaleSteps; i++) {
         var y = yScale * (yScaleSteps - i) / yScaleSteps + yLabelHeight - 1;
