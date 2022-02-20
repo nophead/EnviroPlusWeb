@@ -108,8 +108,6 @@ h1 {
 }
 .container-scale-factors details > summary:after{
   content: "\2304";
-  right: 0.5rem;
-  top: 0.5rem;
   position: absolute;
 }
 .container-scale-factors details[open] > summary {
