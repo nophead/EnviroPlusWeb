@@ -89,8 +89,8 @@
       <div class="container-scale-factors">
         <details>
           <summary>Scale factors</summary>
-          <table id="scale-factors" class="scale-factors">
-            <tbody>
+          <table class="scale-factors">
+            <tbody id="scale-factors-tbody">
               <tr>
                 <td>Temperature</td>
                 <td>/50</td>
@@ -276,6 +276,7 @@
       // Plot each item
       // var keys = "";
       // var ranges = "";
+      var scaleFactors = "";
       var items = particle_sensor ? items_ngp.concat(items_g).concat(items_p) :
         gas_sensor ? items_ngp.concat(items_g) : items_ngp;
       for (var item of items) {
@@ -283,11 +284,12 @@
         plotData(item.name, item.min, item.max);
         // keys += '<th class="keys" style="color:' + item.colour + '"> &#9632; ' + item.name + ' </th>';
         // ranges += '<td class="ranges" style="color:' + item.colour + '">[' + item.min + '/' + item.max + ']</td>';
+        scaleFactors += '<tr><td>' + item.name + '</td><td>' + item.min + '/' + item.max + '</td></tr>';
       }
 
       // Update the legend
-      // document.getElementById("legend").innerHTML = keys;
-      // document.getElementById("range").innerHTML = ranges;
+      // document.getElementById("scale-factors-tbody").innerHTML = ranges;
+      console.log('scaleFactors: ', scaleFactors);
     }
 
     function scaley(y, min, max) {

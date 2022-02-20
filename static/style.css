@@ -101,14 +101,27 @@ h1 {
   padding: 0.5rem;
 }
 .container-scale-factors details > summary {
+  position: relative;
   border: none;
   cursor: pointer;
   list-style: none;
+}
+.container-scale-factors details > summary:after{
+  content: '';
+  border: 4px solid transparent;
+  border-top: 4px solid black;
+  right: 0.75rem;
+  top: 1rem;
+  position: absolute;
 }
 .container-scale-factors details[open] > summary {
   border-bottom: 1px solid silver;
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
+}
+.container-scale-factors details[open] > summary:after{
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid black;
 }
 
 .footer {
