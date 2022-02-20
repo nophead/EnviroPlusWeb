@@ -65,18 +65,21 @@ h1 {
 .container-graph {
   margin: 0 2rem;
 }
+.readings {
+  margin-bottom: 2rem;
+}
 .readings-time {
   font-size: 1.2rem;
   font-weight: bold;
   padding-bottom: 1rem;
 }
-.container-readings tr:nth-child(even){
+.readings tr:nth-child(even){
     color: #505050;
 }
-.container-readings td{
+.readings td{
     padding-bottom: 0.35rem;
 }
-.container-readings hr {
+.readings hr {
   border-top: 1px solid silver;
   color: transparent;
 }
@@ -89,14 +92,18 @@ h1 {
   display: block;
 }
 .container-scale-factors details{
-  border: 1px solid #aaa;
+  border: 1px solid silver;
   border-radius: 4px;
-  padding: .5em .5em 0;
+  padding: .5rem;
 }
 .container-scale-factors details > summary {
   border: none;
   cursor: pointer;
   list-style: none;
+}
+.container-scale-factors details[open] > summary {
+  border-bottom: 1px solid silver;
+  margin-bottom: 0.5rem;
 }
 
 .footer {
