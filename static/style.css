@@ -57,13 +57,14 @@ h1 {
 }
 
 .main {
-  min-height: calc(100% - 12.25rem);
   display: grid;
   grid-template-columns: fit-content(20rem) 1fr;
-  margin: 3rem 0;
+  margin: 2rem 0;
 }
 .container-readings,
 .container-graph {
+  height: 100%;
+  max-height: calc(100vh - 7rem);
   margin: 0 2rem;
 }
 .readings {
