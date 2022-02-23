@@ -69,6 +69,7 @@ h1 {
 }
 .container-readings{
   overflow:auto;
+  padding: 0 0.75rem 0 0;
 }
 .readings {
   margin-bottom: 1rem;
@@ -115,7 +116,7 @@ h1 {
   list-style: none;
 }
 .container-scale-factors details > summary:after {
-  content: "\2304";
+  content: "\25bc";
   position: absolute;
   top: -0.25rem;
   right: 0;
