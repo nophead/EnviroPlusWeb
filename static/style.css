@@ -67,6 +67,9 @@ h1 {
   max-height: calc(100vh - 7rem);
   margin: 0 2rem;
 }
+.container-readings{
+  overflow:auto;
+}
 .readings {
   margin-bottom: 1rem;
 }
@@ -126,13 +129,6 @@ h1 {
 .container-scale-factors details[open] > summary:after {
   content: "\2303";
   top: 0.25rem;
-}
-
-.footer {
-  padding: 1rem;
-  color: #777;
-  text-align: center;
-  background-color: #fff;
 }
 
 /* a11y */
