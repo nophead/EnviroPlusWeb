@@ -64,7 +64,7 @@ h1 {
 .container-readings,
 .container-graph {
   height: 100%;
-  max-height: calc(100vh - 7rem);
+  max-height: calc(100vh - 7.5rem);
   margin: 0 2rem;
 }
 .container-readings{
@@ -98,7 +98,6 @@ h1 {
 }
 .container-graph {
   overflow: auto;
-  padding-bottom: 1rem;
 }
 .container-graph > canvas {
   width: 100%;
