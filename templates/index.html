@@ -143,10 +143,10 @@
 
     var last_frequency = "";
     var last_graph = 0;
-    function getGraph() {
+    function getGraph(param) {
       var frequency = document.getElementById("graph-sel").value;
       var t = Date.now() / 1000;
-      if (frequency != last_frequency || t - last_graph >= frequencies[frequency].poll) {
+      if (frequency != last_frequency || t - last_graph >= frequencies[frequency].poll || param == 'resized') {
         last_frequency = frequency;
         last_graph = t;
         var xhttp = new XMLHttpRequest();
@@ -285,7 +285,7 @@
     // Update the graph layout (width/height) if window resize
     window.addEventListener("resize", function(){
       firstLayoutRender = true;
-      getGraph();
+      getGraph('resized');
     });
 
   </script>
