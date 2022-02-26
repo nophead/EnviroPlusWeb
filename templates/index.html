@@ -252,7 +252,6 @@
       // Plot each item
       items = particle_sensor ? items_ngp.concat(items_g).concat(items_p) :
         gas_sensor ? items_ngp.concat(items_g) : items_ngp;
-        console.log('items: ', items);
       for (var item of items) {
         ctx.strokeStyle = item.colour;
         plotData(item.name, item.min, item.max);
@@ -264,12 +263,12 @@
 
     function scaleFactors() {
       console.log('scaleFactors');
-      for (var item of items) {
-        spanId = document.getElementById(item.name);
-        if (typeof spanId !== 'undefined' && spanId !== null ){
-          document.getElementById(item.name).innerHTML = '[/' + (item.max - item.min) + ']';
-        }
+
+      spanId = document.getElementById('temp');
+      if (typeof spanId !== 'undefined' && spanId !== null ){
+        spanId.innerHTML = '[/' + 50 + ']';
       }
+
     }
 
     function scaley(y, min, max) {
