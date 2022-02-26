@@ -59,7 +59,15 @@ h1 {
 .main {
   display: grid;
   grid-template-columns: 16rem 1fr;
+  grid-template-rows: 1fr;
   margin: 2rem;
+}
+@media screen and (max-width: 578px) {
+  .main {
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr;
+  }
+  
 }
 .container-readings,
 .container-graph {
