@@ -86,6 +86,7 @@ h1 {
   color: #505050;
 }
 .readings td {
+  vertical-align: top;
   padding-bottom: 0.35rem;
 }
 .readings hr {

@@ -93,13 +93,8 @@
     <div class="container-readings">
       <div id="readings" class="readings">Connecting...</div>
       <div class="container-scale-factors">
-        <details>
-          <summary>Scale factors</summary>
-          <table class="scale-factors">
-            <tbody id="scale-factors-tbody">
-            </tbody>
-          </table>
-        </details>
+        <input type="checkbox" name="scale-factors" id="scale-factors">
+        <label for="scale-factors">Show scale factors</label>
       </div>
     </div>
 
@@ -260,11 +255,12 @@
       for (var item of items) {
         ctx.strokeStyle = item.colour;
         plotData(item.name, item.min, item.max);
-        scaleFactors += '<tr><td>' + item.name + '</td><td>/' + (item.max - item.min) + '</td></tr>';
+        document.getElementById(item.name).innerHTML = '[/' + (item.max - item.min) + ']';
+        // scaleFactors += '<tr><td>' + item.name + '</td><td>[/' + (item.max - item.min) + ']</td></tr>';
       }
 
       // Update the legend
-      document.getElementById("scale-factors-tbody").innerHTML = scaleFactors;
+      // 
     }
 
     function scaley(y, min, max) {
