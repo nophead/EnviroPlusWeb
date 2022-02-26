@@ -80,11 +80,11 @@ h1 {
   .container-readings,
   .container-graph {
     max-height: none;
+    margin-bottom: 3rem;
   }
   .container-readings{
     overflow: unset;
     margin-right: 0;
-    margin-bottom: 3rem;
   }  
 }
 .readings {
