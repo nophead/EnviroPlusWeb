@@ -62,13 +62,6 @@ h1 {
   grid-template-rows: 1fr;
   margin: 2rem;
 }
-@media screen and (max-width: 578px) {
-  .main {
-    grid-template-columns: 1fr;
-    grid-template-rows: 2fr;
-  }
-  
-}
 .container-readings,
 .container-graph {
   height: 100%;
@@ -78,6 +71,21 @@ h1 {
   overflow:auto;
   padding: 0 0.75rem 0 0;
   margin-right: 0.5rem;
+}
+@media screen and (max-width: 578px) {
+  .main {
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr;
+  }
+  .container-readings,
+  .container-graph {
+    max-height: none;
+  }
+  .container-readings{
+    overflow: unset;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }  
 }
 .readings {
   margin-bottom: 1rem;
