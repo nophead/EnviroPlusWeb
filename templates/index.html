@@ -9,7 +9,7 @@
   <base href="/" />
   <meta name="keywords" content="Enviro+, EnviroPlus, RaspberryPi" />
   <meta name="description" content="Web interface for Enviro+ sensor board plugged into a Raspberry Pi" />
-  <meta name="theme-color" content="#cccccc" />
+  <meta name="theme-color" content="#b0b0b0" />
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <link rel="stylesheet" href="/static/style.css" media="all" />
 </head>
@@ -24,9 +24,18 @@
     <div class="header-settings">
 
       <div>
-        <span class="header-icon" title="Time range"> 
+        <span class="header-icon" title="Time range">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
-            <circle cx="386" cy="210" r="20"/><path d="M432 50h-30V30c0-11.046-4.954-20-16-20s-14.901 9.009-16 20v20h-99V30c0-11.046-4.954-20-16-20s-14.901 9.009-16 20v20h-98V30c0-11.046-4.954-20-16-20s-14.901 9.009-16 20v20H80c-44.112 0-70 25.888-70 70v312c0 44.112 25.888 70 70 70h153c11.046 0 20-2.954 20-14s-8.954-16-20-16H80c-22.056 0-40-17.944-40-40V120c0-22.056 17.944-40 40-40h29v20c0 11.046 4.954 20 16 20s16-8.954 16-20V80h98v20c0 11.046 4.954 20 16 20s16-8.954 16-20V80h99v20c0 11.046 4.954 20 16 20s14.901-9.009 16-20V80h30c22.056 0 40 17.944 40 40v114c0 11.046 4.954 20 16 20s14-8.954 14-20V120c0-44.112-26.018-66.617-70-70zm-41 220c-66.72 0-121 54.28-121 121s54.28 121 121 121 121-54.28 121-121-54.28-121-121-121zm0 212c-44.663 0-91-46.336-91-91s46.337-91 91-91 91 46.336 91 91-46.337 91-91 91zm25-107h-9v-25c0-11.046-4.954-20-16-20s-16 8.954-16 20v39c0 11.046 4.954 18 16 18h29c11.046 0 20-4.954 20-16s-12.954-16-24-16z"/><circle cx="299" cy="210" r="20"/><circle cx="212" cy="297" r="20"/><circle cx="125" cy="210" r="20"/><circle cx="125" cy="297" r="20"/><circle cx="125" cy="384" r="20"/><circle cx="212" cy="384" r="20"/><circle cx="212" cy="210" r="20"/>
+            <circle cx="386" cy="210" r="20" />
+            <path
+              d="M432 50h-30V30c0-11.046-4.954-20-16-20s-14.901 9.009-16 20v20h-99V30c0-11.046-4.954-20-16-20s-14.901 9.009-16 20v20h-98V30c0-11.046-4.954-20-16-20s-14.901 9.009-16 20v20H80c-44.112 0-70 25.888-70 70v312c0 44.112 25.888 70 70 70h153c11.046 0 20-2.954 20-14s-8.954-16-20-16H80c-22.056 0-40-17.944-40-40V120c0-22.056 17.944-40 40-40h29v20c0 11.046 4.954 20 16 20s16-8.954 16-20V80h98v20c0 11.046 4.954 20 16 20s16-8.954 16-20V80h99v20c0 11.046 4.954 20 16 20s14.901-9.009 16-20V80h30c22.056 0 40 17.944 40 40v114c0 11.046 4.954 20 16 20s14-8.954 14-20V120c0-44.112-26.018-66.617-70-70zm-41 220c-66.72 0-121 54.28-121 121s54.28 121 121 121 121-54.28 121-121-54.28-121-121-121zm0 212c-44.663 0-91-46.336-91-91s46.337-91 91-91 91 46.336 91 91-46.337 91-91 91zm25-107h-9v-25c0-11.046-4.954-20-16-20s-16 8.954-16 20v39c0 11.046 4.954 18 16 18h29c11.046 0 20-4.954 20-16s-12.954-16-24-16z" />
+            <circle cx="299" cy="210" r="20" />
+            <circle cx="212" cy="297" r="20" />
+            <circle cx="125" cy="210" r="20" />
+            <circle cx="125" cy="297" r="20" />
+            <circle cx="125" cy="384" r="20" />
+            <circle cx="212" cy="384" r="20" />
+            <circle cx="212" cy="210" r="20" />
           </svg>
         </span>
         <label for="graph-sel" class="visually-hidden">
@@ -42,15 +51,38 @@
       </div>
 
       <div>
-        <span class="header-icon" title="Particule Matter Fan power">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
-            <use xlink:href="#A" transform="matrix(1.5 0 0 1.5 -245.99999 -10.000007)" filter="url(#B)"/><use xlink:href="#A" y="412" transform="matrix(1.5 0 0 1.5 -245.99999 -245.99999)"/><path d="M65 80a15.01 15.01 0 0 0 15-15 15.01 15.01 0 0 0-15-15 15.01 15.01 0 0 0-15 15 15.01 15.01 0 0 0 15 15zm0 0"/><use xlink:href="#A" x="-412" y="412" transform="matrix(1.5 0 0 1.5 -10.000007 -245.99999)"/><g stroke="#000"><path d="M458.665 4.145H53.335c-27.124 0-49.191 22.067-49.191 49.191v405.329c0 27.124 22.067 49.191 49.191 49.191h405.329c27.124 0 49.191-22.067 49.191-49.191V53.335c0-27.124-22.067-49.191-49.191-49.191zm29.514 454.52c0 16.275-13.239 29.514-29.514 29.514H53.335c-16.275 0-29.514-13.239-29.514-29.514V53.335c0-16.275 13.239-29.514 29.514-29.514h405.329c16.275 0 29.514 13.239 29.514 29.514zM367.772 174.711c0-50.424-41.025-91.45-91.45-91.45H256a10.161 10.161 0 0 0-10.161 10.161v84.734c-16.953-20.946-42.799-33.929-71.127-33.929-50.424 0-91.45 41.025-91.45 91.45V256c0 5.612 4.549 10.149 10.161 10.149h84.734c-20.946 16.957-33.929 42.812-33.929 71.14 0 50.424 41.025 91.45 91.45 91.45H256a10.161 10.161 0 0 0 10.161-10.161v-84.734c16.953 20.946 42.799 33.929 71.127 33.929 50.424 0 91.45-41.025 91.45-91.45V256a10.161 10.161 0 0 0-10.161-10.161h-84.734c20.946-16.953 33.929-42.799 33.929-71.127zm-91.45-71.127c39.22 0 71.127 31.908 71.127 71.127a71.08 71.08 0 0 1-43.189 65.428c-5.656-17.195-20.231-30.265-38.1-33.913V103.584zM257.933 286.42c-17.242 1.039-31.345-12.118-32.353-28.487-1.071-17.779 13.011-32.417 30.42-32.417 16.682 0 30.483 13.53 30.483 30.483 0 16.071-12.551 29.436-28.551 30.42zm-154.349-50.742c0-39.22 31.908-71.127 71.127-71.127a71.08 71.08 0 0 1 65.428 43.189c-17.195 5.656-30.265 20.231-33.913 38.1H103.584zm132.094 172.738c-39.22 0-71.127-31.908-71.127-71.127a71.08 71.08 0 0 1 43.189-65.428c5.656 17.195 20.231 30.265 38.1 33.913v102.643zm172.738-132.094c0 39.22-31.908 71.127-71.127 71.127a71.08 71.08 0 0 1-65.428-43.189c17.195-5.656 30.265-20.231 33.913-38.1h102.643zm0 0" stroke-width="5.761"/><circle cx="257.201" cy="257.229" r="207.024" fill="none" stroke-width="34.016"/></g><defs><path id="A" d="M462 40c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm0 0"/><filter id="B" x="0" width="1" y="0" height="1" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="0"/></filter></defs>
+        <span class="header-icon" title="Fan power">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"
+            aria-hidden="true" focusable="false">
+            <use xlink:href="#A" transform="matrix(1.5 0 0 1.5 -245.99999 -10.000007)" filter="url(#B)" />
+            <use xlink:href="#A" y="412" transform="matrix(1.5 0 0 1.5 -245.99999 -245.99999)" />
+            <path
+              d="M65 80a15.01 15.01 0 0 0 15-15 15.01 15.01 0 0 0-15-15 15.01 15.01 0 0 0-15 15 15.01 15.01 0 0 0 15 15zm0 0" />
+            <use xlink:href="#A" x="-412" y="412" transform="matrix(1.5 0 0 1.5 -10.000007 -245.99999)" />
+            <g stroke="#000">
+              <path
+                d="M458.665 4.145H53.335c-27.124 0-49.191 22.067-49.191 49.191v405.329c0 27.124 22.067 49.191 49.191 49.191h405.329c27.124 0 49.191-22.067 49.191-49.191V53.335c0-27.124-22.067-49.191-49.191-49.191zm29.514 454.52c0 16.275-13.239 29.514-29.514 29.514H53.335c-16.275 0-29.514-13.239-29.514-29.514V53.335c0-16.275 13.239-29.514 29.514-29.514h405.329c16.275 0 29.514 13.239 29.514 29.514zM367.772 174.711c0-50.424-41.025-91.45-91.45-91.45H256a10.161 10.161 0 0 0-10.161 10.161v84.734c-16.953-20.946-42.799-33.929-71.127-33.929-50.424 0-91.45 41.025-91.45 91.45V256c0 5.612 4.549 10.149 10.161 10.149h84.734c-20.946 16.957-33.929 42.812-33.929 71.14 0 50.424 41.025 91.45 91.45 91.45H256a10.161 10.161 0 0 0 10.161-10.161v-84.734c16.953 20.946 42.799 33.929 71.127 33.929 50.424 0 91.45-41.025 91.45-91.45V256a10.161 10.161 0 0 0-10.161-10.161h-84.734c20.946-16.953 33.929-42.799 33.929-71.127zm-91.45-71.127c39.22 0 71.127 31.908 71.127 71.127a71.08 71.08 0 0 1-43.189 65.428c-5.656-17.195-20.231-30.265-38.1-33.913V103.584zM257.933 286.42c-17.242 1.039-31.345-12.118-32.353-28.487-1.071-17.779 13.011-32.417 30.42-32.417 16.682 0 30.483 13.53 30.483 30.483 0 16.071-12.551 29.436-28.551 30.42zm-154.349-50.742c0-39.22 31.908-71.127 71.127-71.127a71.08 71.08 0 0 1 65.428 43.189c-17.195 5.656-30.265 20.231-33.913 38.1H103.584zm132.094 172.738c-39.22 0-71.127-31.908-71.127-71.127a71.08 71.08 0 0 1 43.189-65.428c5.656 17.195 20.231 30.265 38.1 33.913v102.643zm172.738-132.094c0 39.22-31.908 71.127-71.127 71.127a71.08 71.08 0 0 1-65.428-43.189c17.195-5.656 30.265-20.231 33.913-38.1h102.643zm0 0"
+                stroke-width="5.761" />
+              <circle cx="257.201" cy="257.229" r="207.024" fill="none" stroke-width="34.016" />
+            </g>
+            <defs>
+              <path id="A" d="M462 40c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm0 0" />
+              <filter id="B" x="0" width="1" y="0" height="1" color-interpolation-filters="sRGB">
+                <feGaussianBlur stdDeviation="0" />
+              </filter>
+            </defs>
           </svg>
         </span>
         <label for="fan" class="visually-hidden">
           Fan power
         </label>
         <input id="fan" type="number" min="0" max="100" step="5" value="100" name="fan">
+      </div>
+      
+      <div>
+        <a href="https://github.com/nophead/EnviroPlusWeb" target="_blank" class="header-icon" rel="noopener noreferrer" title="Enviro Plus Web repo in GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 1 1024 1024"><path d="M512 0C229.25 0 0 229.25 0 512c0 226.25 146.688 418.125 350.156 485.812 25.594 4.688 34.938-11.125 34.938-24.625l-.72-95.312C242 908.812 211.906 817.5 211.906 817.5c-23.312-59.125-56.844-74.875-56.844-74.875-46.53-31.75 3.53-31.125 3.53-31.125 51.406 3.562 78.47 52.75 78.47 52.75 45.688 78.25 119.875 55.625 149 42.5 4.654-33 17.904-55.625 32.5-68.375-113.656-12.937-233.218-56.875-233.218-253.063 0-55.938 19.97-101.562 52.656-137.406-5.22-13-22.844-65.094 5.062-135.562 0 0 42.938-13.75 140.812 52.5 40.812-11.406 84.594-17.03 128.125-17.22 43.5.188 87.312 5.875 128.188 17.28 97.688-66.312 140.688-52.5 140.688-52.5 28 70.53 10.375 122.562 5.125 135.5 32.812 35.844 52.625 81.47 52.625 137.406 0 196.688-119.75 240-233.812 252.688 18.438 15.875 34.75 47 34.75 94.75l-.688 140.5c0 13.625 9.312 29.562 35.25 24.562C877.438 930 1024 738.125 1024 512 1024 229.25 794.75 0 512 0z"></path></svg>
+        </a>
       </div>
 
     </div>
@@ -59,35 +91,22 @@
   <!-- Main content -->
   <main class="main">
     <div class="container-readings">
-      <span id="readings">Connecting...</span>
+      <div id="readings" class="readings">Connecting...</div>
+      <div class="container-scale-factors">
+        <details>
+          <summary>Scale factors</summary>
+          <table class="scale-factors">
+            <tbody id="scale-factors-tbody">
+            </tbody>
+          </table>
+        </details>
+      </div>
     </div>
 
-    <div class="container-graph">
-      <canvas id="canvas" height="400" width="600"></canvas>
-
-      <table class="graph-legend">
-        <caption class="visually-hidden">
-          Color codes and ranges
-        </caption>
-        <thead>
-          <tr id="legend">
-            <td></td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr id="range">
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+    <div id="container-graph" class="container-graph">
+      <canvas id="canvas-graph"></canvas>
     </div>
-
   </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    Enviro Plus Web open-source code available at <a href="https://github.com/nophead/EnviroPlusWeb" target="_blank" rel="noopener noreferrer">GitHub</a>
-  </footer>
 
   <!-- Javascript -->
   <script>
@@ -124,10 +143,10 @@
 
     var last_frequency = "";
     var last_graph = 0;
-    function getGraph() {
+    function getGraph(param) {
       var frequency = document.getElementById("graph-sel").value;
       var t = Date.now() / 1000;
-      if (frequency != last_frequency || t - last_graph >= frequencies[frequency].poll) {
+      if (frequency != last_frequency || t - last_graph >= frequencies[frequency].poll || param == 'resized') {
         last_frequency = frequency;
         last_graph = t;
         var xhttp = new XMLHttpRequest();
@@ -142,39 +161,48 @@
     }
 
     var items_ngp = [
-      { name: "temp", colour: "#FF0000", min: 0, max: 50 },
-      { name: "humi", colour: "#0000FF", min: 0, max: 100 },
-      { name: "pres", colour: "green", min: 950, max: 1050 },
-      { name: "lux", colour: "#FFFF00", min: 0, max: 25000 },
+      { name: "temp", colour: "#ff595e", min: 0, max: 50 },
+      { name: "humi", colour: "#006caf", min: 0, max: 100 },
+      { name: "pres", colour: "#588f00", min: 950, max: 1050 },
+      { name: "lux", colour: "#f5b60f", min: 0, max: 25000 },
     ]
 
     var items_g = [
-      { name: "oxi", colour: "#00FFFF", min: 0, max: 400 },
-      { name: "red", colour: "darkorange", min: 0, max: 1000 },
-      { name: "nh3", colour: "#FF00FF", min: 0, max: 600 },
+      { name: "oxi", colour: "#6a4c93", min: 0, max: 400 },
+      { name: "red", colour: "#ce7100", min: 0, max: 1000 },
+      { name: "nh3", colour: "#6ca88a", min: 0, max: 600 },
     ]
 
     var items_p = [
-      { name: "pm03", colour: "#000000", min: 0, max: 20000 },
-      { name: "pm05", colour: "#181818", min: 0, max: 10000 },
-      { name: "pm10", colour: "#303030", min: 0, max: 2000 },
-      { name: "pm25", colour: "#505050", min: 0, max: 500 },
-      { name: "pm50", colour: "#707070", min: 0, max: 200 },
-      { name: "pm100", colour: "#909090", min: 0, max: 100 },
+      { name: "pm03", colour: "#575757", min: 0, max: 20000 },
+      { name: "pm05", colour: "#696969", min: 0, max: 10000 },
+      { name: "pm10", colour: "#7c7c7c", min: 0, max: 2000 },
+      { name: "pm25", colour: "#909090", min: 0, max: 500 },
+      { name: "pm50", colour: "#a4a4a4", min: 0, max: 200 },
+      { name: "pm100", colour: "#b0b0b0", min: 0, max: 100 },
     ];
 
+    var firstLayoutRender = true;
+    var containerCanvas;
     var canvas;
     var ctx;
     var data;
     var yScaleSteps = 10;
     var yLabelHeight = 10;
-    var xLabelHeight = 10;
+    var xLabelHeight = 15;
     var xScale;
     var yScale;
     var yLabelWidth = 25;
     function graph(d) {
       data = d;
-      canvas = document.getElementById("canvas");
+      containerCanvas = document.getElementById("container-graph");
+      canvas = document.getElementById("canvas-graph");
+      if (firstLayoutRender) {
+        canvas.height = containerCanvas.offsetHeight;
+        canvas.width = containerCanvas.offsetWidth;
+        firstLayoutRender = false;
+      }
+
       ctx = canvas.getContext("2d");
       ctx.fillStyle = "#0099ff"
       ctx.font = "20 pt Verdana"
@@ -205,7 +233,8 @@
             ctx.fillText(show_date ? fields[0] + ' ' + fields[1] + ' ' + fields[2]
               : fields[3].slice(0, 5), x, canvas.height);
           ctx.beginPath();
-          ctx.strokeStyle = is_major ? "#808080" : "#B0B0B0"; // colour of grid lines
+          ctx.strokeStyle = is_major ? "#b6b6b6" : "#dcdcdc"; // colour of grid lines
+          ctx.setLineDash([5, 3]);
           ctx.moveTo(x, 0);
           ctx.lineTo(x, canvas.height - xLabelHeight);
           ctx.stroke();
@@ -214,7 +243,7 @@
 
       // Print Y axis labels and draw horizontal grid lines
       ctx.beginPath();
-      ctx.strokeStyle = "#B0B0B0"; // colour of grid lines
+      ctx.strokeStyle = "#dcdcdc"; // colour of grid lines
       ctx.textAlign = 'left';
       for (var i = 0; i <= yScaleSteps; i++) {
         var y = yScale * (yScaleSteps - i) / yScaleSteps + yLabelHeight - 1;
@@ -225,19 +254,17 @@
       ctx.stroke();
 
       // Plot each item
-      var keys = "";
-      var ranges = "";
+      var scaleFactors = "";
       var items = particle_sensor ? items_ngp.concat(items_g).concat(items_p) :
         gas_sensor ? items_ngp.concat(items_g) : items_ngp;
       for (var item of items) {
         ctx.strokeStyle = item.colour;
         plotData(item.name, item.min, item.max);
-        keys += '<td style="color:' + item.colour + '"> ' + item.name + ' </td>';
-        ranges += '<td>/' + (item.max - item.min) + '</td>';
+        scaleFactors += '<tr><td>' + item.name + '</td><td>/' + (item.max - item.min) + '</td></tr>';
       }
+
       // Update the legend
-      document.getElementById("legend").innerHTML = keys;
-      document.getElementById("range").innerHTML = ranges;
+      document.getElementById("scale-factors-tbody").innerHTML = scaleFactors;
     }
 
     function scaley(y, min, max) {
@@ -246,13 +273,20 @@
 
     function plotData(dataSet, min, max) {
       ctx.beginPath();
+      ctx.setLineDash([]);
       y0 = canvas.height - xLabelHeight;
       ctx.moveTo(yLabelWidth, y0 - scaley(data[0][dataSet], min, max));
-      for (var i = 1; i < data.length; i++)
+      for (var i = 1; i < data.length; i++) {
         ctx.lineTo(yLabelWidth + i * xScale, y0 - scaley(data[i][dataSet], min, max));
-
+      }
       ctx.stroke();
     }
+
+    // Update the graph layout (width/height) if window resize
+    window.addEventListener("resize", function(){
+      firstLayoutRender = true;
+      getGraph('resized');
+    });
 
   </script>
 
