@@ -252,6 +252,7 @@
       var scaleFactors = "";
       var items = particle_sensor ? items_ngp.concat(items_g).concat(items_p) :
         gas_sensor ? items_ngp.concat(items_g) : items_ngp;
+        console.log('items: ', items);
       for (var item of items) {
         ctx.strokeStyle = item.colour;
         plotData(item.name, item.min, item.max);
