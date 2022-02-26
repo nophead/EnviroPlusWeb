@@ -57,19 +57,19 @@ h1 {
 }
 
 .main {
-  display: grid;
-  grid-template-columns: fit-content(21rem) 1fr;
-  margin: 2rem 0;
+  display: flex;
+  flex-direction: row;
+  margin: 2rem;
 }
 .container-readings,
 .container-graph {
   height: 100%;
   max-height: calc(100vh - 7.5rem);
-  margin: 0 2rem;
 }
 .container-readings{
+  min-width: 15rem;
   overflow:auto;
-  padding: 0 0.75rem 0 0;
+  padding: 0 1rem 0 0;
 }
 .readings {
   margin-bottom: 1rem;
