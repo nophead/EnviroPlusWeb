@@ -109,7 +109,7 @@
       // Call a function repetitively with 1 second interval
       getData();
       getGraph();
-    }, 2000); //~1s update rate
+    }, 900); //~1s update rate
 
     var frequencies = {
       '5min': { major: 300, minor: 60, poll: 1 },
@@ -155,6 +155,7 @@
       }
     }
 
+    var items = "";
     var items_ngp = [
       { name: "temp", colour: "#ff595e", min: 0, max: 50 },
       { name: "humi", colour: "#006caf", min: 0, max: 100 },
@@ -249,22 +250,26 @@
       ctx.stroke();
 
       // Plot each item
-      var scaleFactors = "";
-      var items = particle_sensor ? items_ngp.concat(items_g).concat(items_p) :
+      items = particle_sensor ? items_ngp.concat(items_g).concat(items_p) :
         gas_sensor ? items_ngp.concat(items_g) : items_ngp;
         console.log('items: ', items);
       for (var item of items) {
         ctx.strokeStyle = item.colour;
         plotData(item.name, item.min, item.max);
+
+        // scaleFactors += '<tr><td>' + item.name + '</td><td>[/' + (item.max - item.min) + ']</td></tr>';
+      }
+      scaleFactors();
+    }
+
+    function scaleFactors() {
+      console.log('scaleFactors');
+      for (var item of items) {
         spanId = document.getElementById(item.name);
         if (typeof spanId !== 'undefined' && spanId !== null ){
           document.getElementById(item.name).innerHTML = '[/' + (item.max - item.min) + ']';
         }
-        // scaleFactors += '<tr><td>' + item.name + '</td><td>[/' + (item.max - item.min) + ']</td></tr>';
       }
-
-      // Update the legend
-      // 
     }
 
     function scaley(y, min, max) {
