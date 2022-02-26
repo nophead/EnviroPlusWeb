@@ -78,9 +78,8 @@ h1 {
   width: 100%;
 }
 .readings-time {
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: bold;
-  padding-bottom: 1rem;
 }
 .readings tr:nth-child(even) {
   color: #505050;
