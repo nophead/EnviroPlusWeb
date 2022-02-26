@@ -74,6 +74,9 @@ h1 {
 .readings {
   margin-bottom: 1rem;
 }
+.reading table {
+  width: 100%;
+}
 .readings-time {
   font-size: 1rem;
   font-weight: bold;
