@@ -58,7 +58,7 @@ h1 {
 
 .main {
   display: grid;
-  grid-template-columns: fit-content(21rem) 1fr;
+  grid-template-columns: 16rem 1fr;
   margin: 2rem;
 }
 .container-readings,
@@ -67,7 +67,6 @@ h1 {
   max-height: calc(100vh - 7.5rem);
 }
 .container-readings{
-  min-width: 15rem;
   overflow:auto;
   padding: 0 1rem 0 0;
 }
