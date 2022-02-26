@@ -109,7 +109,7 @@
       // Call a function repetitively with 1 second interval
       getData();
       getGraph();
-    }, 900); //~1s update rate
+    }, 2000); //~1s update rate
 
     var frequencies = {
       '5min': { major: 300, minor: 60, poll: 1 },
@@ -255,7 +255,10 @@
       for (var item of items) {
         ctx.strokeStyle = item.colour;
         plotData(item.name, item.min, item.max);
-        document.getElementById(item.name).innerHTML = '[/' + (item.max - item.min) + ']';
+        spanId = document.getElementById(item.name);
+        if (typeof spanId !== 'undefined' && spanId !== null ){
+          document.getElementById(item.name).innerHTML = '[/' + (item.max - item.min) + ']';
+        }
         // scaleFactors += '<tr><td>' + item.name + '</td><td>[/' + (item.max - item.min) + ']</td></tr>';
       }
 
