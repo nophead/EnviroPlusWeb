@@ -10,5 +10,5 @@ Run `sudo ./install-service.sh` and it will be installed as a service that start
 
 ![Screenshot](image.png)
 
-* Forked version with a less contrasted color scheme and also a different responsive rescale for the graph:
+*Forked version with a less contrasted color scheme and also a different responsive rescale for the graph:    
 <https://gitlab.com/idotj/enviroplusweb>
